@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::resource('testing','\App\Http\Controllers\TestingController');
+// Route Dashboard
+Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');

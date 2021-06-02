@@ -15,10 +15,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
          // Testing
         $this->app->bind(
-            'App\Http\Interfaces\TestingInterface',
-            'App\Http\Repositories\TestingRepository'
+            'App\Http\Interfaces\MainInterface',
+            'App\Http\Repositories\MainRepository'
         );
-        
+
 
         /* Module
         $this->app->bind(
