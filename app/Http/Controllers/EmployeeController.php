@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Interfaces\TestingInterface;
+use App\Http\Interfaces\EmployeeInterface;
 
 use Illuminate\Http\Request;
 
-class TestingController extends Controller
+class EmployeeController extends Controller
 {
     private $interface;
    private $modelName;
 
-    public function __construct(TestingInterface $testingInterface)
+    public function __construct(EmployeeInterface $employeeInterface)
     {
-        $this->interface = $testingInterface;
+        $this->interface = $employeeInterface;
         $this->modelName = $this->getModuleName();
     }
     /**

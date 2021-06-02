@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('testing','\App\Http\Controllers\TestingController');
+Route::resource('employees','\App\Http\Controllers\EmployeeController');
