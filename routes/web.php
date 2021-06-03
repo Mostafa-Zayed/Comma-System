@@ -20,9 +20,6 @@ Route::resource('employees','\App\Http\Controllers\EmployeeController');
 
 
 // Route Dashboard
-<<<<<<< HEAD
-Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
-=======
-Route::get('/',[\App\Http\Controllers\MainController::class,'index']);
 
->>>>>>> 4660862093d0a7362d145b202583dbc41bf85e5d
+Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
+
