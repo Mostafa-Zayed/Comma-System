@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Employees Urls
 Route::resource('employees','\App\Http\Controllers\EmployeeController');
 
+
+
+// Route Dashboard
+Route::get('/',[\App\Http\Controllers\MainController::class,'index']);
 
