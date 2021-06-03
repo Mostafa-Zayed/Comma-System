@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route Dashboard
-Route::get('/',[\App\Http\Controllers\MainController::class,'index']);
+Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
