@@ -13,5 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Employees Urls
 Route::resource('employees','\App\Http\Controllers\EmployeeController');
+
+
