@@ -17,9 +17,6 @@ use App\Http\Controllers\MainController;
 // Employees Urls
 Route::resource('employees','\App\Http\Controllers\EmployeeController');
 
-
-
 // Route Dashboard
-
 Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
 
