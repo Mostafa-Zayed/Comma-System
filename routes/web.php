@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Clients Urls
 Route::resource('clients', '\App\Http\Controllers\ClientController');
