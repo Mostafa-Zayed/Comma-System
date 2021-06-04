@@ -13,12 +13,12 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         // Testing
+         // Client
         $this->app->bind(
-            'App\Http\Interfaces\TestingInterface',
-            'App\Http\Repositories\TestingRepository'
+            'App\Http\Interfaces\ClientInterface',
+            'App\Http\Repositories\ClientRepository'
         );
-        
+
 
         /* Module
         $this->app->bind(
