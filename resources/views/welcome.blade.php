@@ -45,51 +45,20 @@
                                     </div>
                                     <div class="w-browser-details">
                                         data
-
                                     </div>
-
                                 </div>
-
                                 <div class="browser-list">
                                     <div class="w-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                                     </div>
                                     <div class="w-browser-details">
-
                                         data
-
                                     </div>
-
                                 </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="row widget-statistic">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-followers">
-                              data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-referral">
-                                data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-engagement">
-                                data
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-chart-three">
-                    </div>
-                </div> -->
             </div>
             <!-- End Row -->
 
@@ -117,55 +86,23 @@
                                     </div>
                                     <div class="w-browser-details">
                                         data
-
                                     </div>
-
                                 </div>
-
                                 <div class="browser-list">
                                     <div class="w-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                                     </div>
                                     <div class="w-browser-details">
-
                                         data
-
                                     </div>
-
                                 </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="row widget-statistic">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-followers">
-                              data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-referral">
-                                data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-engagement">
-                                data
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-chart-three">
-                    </div>
-                </div> -->
             </div>
             <!-- End Row -->
             @include('includes.footer')
-
         </div>
     </div>
 @endsection
