@@ -13,8 +13,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-
          // Employee
         $this->app->bind(
             'App\Http\Interfaces\EmployeeInterface',
