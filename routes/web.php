@@ -20,3 +20,5 @@ Route::resource('employees','\App\Http\Controllers\EmployeeController');
 // Route Dashboard
 Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
 
+//  Clients Urls
+Route::resource('clients','\App\Http\Controllers\EmployeeController');
