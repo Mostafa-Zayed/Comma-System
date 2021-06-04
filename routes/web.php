@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 // Clients Urls
 Route::resource('clients', '\App\Http\Controllers\ClientController');
+
+
+// Route Dashboard
+
+Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
+

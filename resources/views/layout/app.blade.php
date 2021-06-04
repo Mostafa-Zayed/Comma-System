@@ -22,8 +22,13 @@
 <!--  END TOPBAR  -->
 
     <!--  BEGIN CONTENT PART  -->
+<<<<<<< HEAD
 @yield('content')
 <!--  END CONTENT PART  -->
+=======
+    @yield('content')
+    <!--  END CONTENT PART  -->
+>>>>>>> edeadb33173ab3b0c0134b955e2438fa0c905251
 
 </div>
 <!-- END MAIN CONTAINER -->
@@ -46,6 +51,9 @@
 <script src="{{asset('plugins/apex/apexcharts.min.js')}}"></script>
 <script src="{{asset('assets/js/dashboard/dash_2.js')}}"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<<<<<<< HEAD
 @yield('script')
+=======
+>>>>>>> edeadb33173ab3b0c0134b955e2438fa0c905251
 </body>
 </html>
