@@ -37,6 +37,7 @@
                                     <div class="w-browser-details">
                                         data
                                     </div>
+
                                 </div>
 
                                 <div class="browser-list">
@@ -67,31 +68,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="row widget-statistic">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-followers">
-                              data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-referral">
-                                data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-engagement">
-                                data
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-chart-three">
-
-                    </div>
-                </div> -->
             </div>
             <!-- End Row -->
 
@@ -101,6 +77,7 @@
                     <div class="widget-four">
                         <div class="widget-heading">
                             <h5 class="">Heading of Section Here</h5>
+
                         </div>
                         <div class="widget-content">
                             <div class="vistorsBrowser">
@@ -141,35 +118,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="row widget-statistic">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-followers">
-                              data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-referral">
-                                data
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="widget widget-one_hybrid widget-engagement">
-                                data
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                    <div class="widget widget-chart-three">
-
-                    </div>
-                </div> -->
             </div>
             <!-- End Row -->
             @include('includes.footer')
-
         </div>
     </div>
 @endsection

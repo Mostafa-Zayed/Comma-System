@@ -22,9 +22,9 @@
 <!--  END TOPBAR  -->
 
     <!--  BEGIN CONTENT PART  -->
+
     @yield('content')
     <!--  END CONTENT PART  -->
-
 </div>
 <!-- END MAIN CONTAINER -->
 
