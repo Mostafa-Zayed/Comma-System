@@ -10,6 +10,7 @@
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -70,6 +71,12 @@
 @section('script')
     <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
     <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
+    <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+    <script>
+        var firstUpload = new FileUploadWithPreview('myFirstImage')
+    </script>
+
+
     <script>
         checkall('todoAll', 'todochkbox');
         $('[data-toggle="tooltip"]').tooltip()
