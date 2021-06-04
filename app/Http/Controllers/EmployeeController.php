@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\EmployeeInterface;
 
+use App\Http\Requests\Employess\Store;
+use App\Http\Requests\Employess\Update;
+use App\Http\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    use HelperTrait;
     private $interface;
     private $modelName;
 
@@ -44,7 +48,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
@@ -78,7 +82,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
     }
@@ -94,10 +98,10 @@ class EmployeeController extends Controller
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
-     private function getModuleName()
-     {
-         $data = explode('\\',__CLASS__);
-         $controllerName = end($data);
-         return substr($controllerName,0,strpos($controllerName,'Controller'));
-     }
+//     private function getModuleName()
+//     {
+//         $data = explode('\\',__CLASS__);
+//         $controllerName = end($data);
+//         return substr($controllerName,0,strpos($controllerName,'Controller'));
+//     }
 }

@@ -27,8 +27,8 @@ class EmployeeFactory extends Factory
             'email' => $this->faker->safeEmail,
             'ssn' => $this->faker->numberBetween(10000,1000000),
             'password' => bcrypt('password'),
-            'type' => $this->faker->randomElement([false,true]),
-            'active' => $this->faker->randomElement(['active','not active'])
+            'type' => $this->faker->randomElement(['super_admin','admin','manager','employee']),
+            'active' => $this->faker->randomElement(['on','off'])
         ];
     }
 }
