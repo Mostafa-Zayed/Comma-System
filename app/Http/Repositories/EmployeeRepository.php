@@ -32,7 +32,7 @@ class EmployeeRepository implements EmployeeInterface
 
     public function showEmployee($id)
     {
-        // TODO: Implement showEmployee() method.
+
     }
 
     public function createEmployee()

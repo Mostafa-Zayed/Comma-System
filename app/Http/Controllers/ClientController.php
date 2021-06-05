@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Interfaces\ClientInterface;
-
 use Illuminate\Http\Request;
+use App\Http\Requests\Clients\Store;
 
 class ClientController extends Controller
 {
@@ -44,8 +44,9 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
+        dd($request->all());
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
 
