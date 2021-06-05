@@ -4,7 +4,7 @@
     $types = ['super_admin','admin','manager','employee'];
 @endphp
 @section('title')
-    Employee
+    {{$model}}
 @endsection
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@
                                 <div class="table-responsive mb-4">
                                     <div id="column-filter_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                         <div class="row">
-                                            @include('includes.table',['models' => $models,'rows' => $rows])
+                                            @include($models.'.table',['models' => $models,'rows' => $rows])
                                         </div>
                                         <div class="row">
                                         </div>

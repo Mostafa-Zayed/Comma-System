@@ -8,7 +8,7 @@ use App\Http\Interfaces\EmployeeInterface;
 use App\Http\Requests\Employess\Store;
 use App\Http\Requests\Employess\Update;
 use App\Http\Traits\HelperTrait;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -29,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+        return $this->interface->{__FUNCTION__.$this->modelName}();
     }
 
     /**
@@ -98,10 +98,10 @@ class EmployeeController extends Controller
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
-//     private function getModuleName()
-//     {
-//         $data = explode('\\',__CLASS__);
-//         $controllerName = end($data);
-//         return substr($controllerName,0,strpos($controllerName,'Controller'));
-//     }
+     private function getModuleName()
+     {
+         $data = explode('\\',__CLASS__);
+         $controllerName = end($data);
+         return substr($controllerName,0,strpos($controllerName,'Controller'));
+     }
 }

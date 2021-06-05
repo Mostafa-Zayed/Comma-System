@@ -91,7 +91,7 @@
             <label for="{{$input}}">{{ucwords($input)}}</label>
             <div class="col-md-10 float-right">
                 <label class="switch s-icons s-outline s-outline-primary mr-2">
-                    <input type="checkbox" checked name="active">
+                    <input type="checkbox" checked name="{{$input}}">
                     <span class="slider"></span>
                 </label>
             </div>

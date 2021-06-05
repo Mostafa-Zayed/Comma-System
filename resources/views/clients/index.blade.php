@@ -30,7 +30,7 @@
                                 <div class="table-responsive mb-4">
                                     <div id="column-filter_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                         <div class="row">
-                                            @include('includes.table',['models' => $models,'rows' => $rows])
+                                            @include($models.'.table',['models' => $models,'rows' => $rows])
                                         </div>
                                         <div class="row">
                                         </div>

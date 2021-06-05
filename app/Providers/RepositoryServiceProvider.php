@@ -31,6 +31,12 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\ClientRepository'
         );
 
+//        // Category Module
+//        $this->app->bind(
+//            'App\Http\Interfaces\CategoryInterface',
+//            'App\Http\Repositories\CategoryRepository'
+//        );
+
 
         /* Module
         $this->app->bind(
