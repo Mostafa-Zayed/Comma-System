@@ -4,7 +4,7 @@
     $types = ['super_admin','admin','manager','employee'];
 @endphp
 @section('title')
-    Employee
+    {{$model}}
 @endsection
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />

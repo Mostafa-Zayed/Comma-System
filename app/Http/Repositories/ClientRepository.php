@@ -35,12 +35,17 @@ class ClientRepository implements ClientInterface
 
     public function createClient()
     {
-        // TODO: Implement createClient() method.
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName
+            ]);
     }
 
     public function storeClient($request)
     {
-        // TODO: Implement storeClient() method.
+        $this->model::create($request->except(['_token','create'])+['ssn' => str_shuffle(rand())]);
+        return redirect()->route($this->viewName.'.index');
     }
 
     public function editClient($id)

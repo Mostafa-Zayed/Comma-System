@@ -28,7 +28,7 @@ class ClientFactory extends Factory
             'ssn' => str_shuffle('lksdjfeirhg'.$this->faker->numberBetween(123,123232132)),
             'phone' => $this->faker->phoneNumber,
             'job' => $this->faker->jobTitle,
-            'status' => $this->faker->randomElement(['on','of']),
+            'status' => $this->faker->randomElement(['on','off']),
             'employee_id' => Employee::select('id')->get()->random()->id
         ];
     }
