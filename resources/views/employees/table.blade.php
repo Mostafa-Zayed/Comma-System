@@ -50,7 +50,7 @@
 
                                 <td>
 
-                                    @if($row->active == 'active')
+                                    @if($row->active == 'on')
                                         <span class="shadow-none badge badge-success">Active</span>
                                     @else
                                         <span class="shadow-none badge badge-danger">Not Active</span>
