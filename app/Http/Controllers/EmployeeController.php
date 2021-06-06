@@ -8,6 +8,8 @@ use App\Http\Interfaces\EmployeeInterface;
 use App\Http\Requests\Employess\Store;
 use App\Http\Requests\Employess\Update;
 use App\Http\Traits\HelperTrait;
+use App\Models\Employee;
+
 //use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -59,9 +61,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        dd($employee);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($employee);
     }
 
     /**
@@ -72,6 +75,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
+        dd($id);
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
