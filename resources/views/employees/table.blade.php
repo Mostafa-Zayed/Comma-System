@@ -55,7 +55,7 @@
                                 </td>
                                 <td class="checkbox-column text-center">
                                     <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input">
+                                        <input type="checkbox" class="new-control-input" @if($row->active === 'on') checked @endisset>
                                         <span class="new-control-indicator"></span>
                                     </label>
                                 </td>

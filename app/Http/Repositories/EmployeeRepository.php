@@ -50,9 +50,14 @@ class EmployeeRepository implements EmployeeInterface
         return redirect()->route($this->viewName.'.index');
     }
 
-    public function editEmployee($id)
+    public function editEmployee($employee)
     {
-
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName,
+                'row' => $employee
+            ]);
     }
 
     public function updateEmployee($request, $id)
