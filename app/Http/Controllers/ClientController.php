@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ClientInterface;
+use Illuminate\Http\Request;
+use App\Http\Requests\Clients\Store;
 
-use App\Http\Interfaces\EmployeeInterface;
-
-use App\Http\Requests\Employess\Store;
-use App\Http\Requests\Employess\Update;
-use App\Http\Traits\HelperTrait;
-//use Illuminate\Http\Request;
-
-class EmployeeController extends Controller
+class ClientController extends Controller
 {
-    use HelperTrait;
     private $interface;
     private $modelName;
 
-    public function __construct(EmployeeInterface $employeeInterface)
+    /** hi */
+
+    public function __construct(ClientInterface $clientInterface)
     {
-        $this->interface = $employeeInterface;
+        $this->interface = $clientInterface;
         $this->modelName = $this->getModuleName();
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return $this->interface->{__FUNCTION__.$this->modelName}();
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
     }
 
     /**
@@ -50,6 +46,7 @@ class EmployeeController extends Controller
      */
     public function store(Store $request)
     {
+        dd($request->all());
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
 
@@ -82,7 +79,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Update $request, $id)
+    public function update(Request $request, $id)
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
     }
@@ -98,10 +95,10 @@ class EmployeeController extends Controller
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
-     private function getModuleName()
-     {
-         $data = explode('\\',__CLASS__);
-         $controllerName = end($data);
-         return substr($controllerName,0,strpos($controllerName,'Controller'));
-     }
+    private function getModuleName()
+    {
+        $data = explode('\\',__CLASS__);
+        $controllerName = end($data);
+        return substr($controllerName,0,strpos($controllerName,'Controller'));
+    }
 }

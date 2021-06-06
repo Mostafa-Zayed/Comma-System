@@ -15,8 +15,8 @@
                         <tr>
                             <th class="">Name</th>
                             <th class="">Email</th>
-                            <th class="" colspan="2">Type</th>
-                            <th class="" colspan="2">Active</th>
+                            <th class="">Phone</th>
+                            <th class="" colspan="2">Status</th>
                             <th class="text-center">Actions</th>
                             <th class="checkbox-column">
                                 <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
@@ -30,36 +30,18 @@
                         @foreach($rows as $row)
                             <tr>
                                 <td>
-                                    <p class="mb-0">{{ucwords($row->fullname)}}</p>
+                                    <p class="mb-0">{{ucwords($row->name)}}</p>
                                 </td>
                                 <td>{{$row->email}}</td>
-                                <td>{{$row->type}}</td>
-                                <td class="text-center">
-                                    <div class="dropdown custom-dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink10">
-                                            @foreach($types as $type)
-                                                <li class="dropdown-item" href="javascript:void(0);">{{ucfirst($type)}}</li>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </td>
-                                <td colspan="2">
-
+                                <td>{{$row->phone}}</td>
                                 <td>
-
-                                    @if($row->active == 'active')
-                                        <span class="shadow-none badge badge-success">Active</span>
+                                    @if($row->status == 'on')
+                                        <span class="shadow-none badge badge-success">Accepted</span>
                                     @else
-                                        <span class="shadow-none badge badge-danger">Not Active</span>
+                                        <span class="shadow-none badge badge-danger">Not Accepted</span>
                                     @endif
                                 </td>
                                 <td class="checkbox-column">
-
-                                <td class="checkbox-column text-center">
-
                                     <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
                                         <input type="checkbox" class="new-control-input">
                                         <span class="new-control-indicator"></span>
@@ -71,9 +53,6 @@
                                         &nbsp;&nbsp;
                                         <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
                                         &nbsp;&nbsp;
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                        &nbsp;&nbsp;
-
                                         <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
                                     </ul>
                                 </td>
@@ -89,8 +68,8 @@
                         <tfoot>
                         <th class="">Name</th>
                         <th class="">Email</th>
-                        <th class="" colspan="2">Type</th>
-                        <th class="" colspan="2">Active</th>
+                        <th>Phone</th>
+                        <th class="" colspan="2">Status</th>
                         <th class="text-center">Actions</th>
                         <th class="checkbox-column">
                             <button class="btn btn-danger">Delete</button>

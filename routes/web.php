@@ -1,22 +1,17 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\MainController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/** Employees Urls */
+Route::resource('employees', EmployeeController::class);
 
-// Employees Urls
-Route::resource('employees','\App\Http\Controllers\EmployeeController');
 
-// Route Dashboard
-Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('index');
+//  Clients Urls
+Route::resource('clients','\App\Http\Controllers\ClientController');
+
+/** Route Dashboard */
+Route::get('/', [MainController::class, 'index'])->name('index');
 
