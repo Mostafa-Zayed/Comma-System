@@ -73,10 +73,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee  $employee)
     {
-        dd($id);
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($employee);
     }
 
     /**
