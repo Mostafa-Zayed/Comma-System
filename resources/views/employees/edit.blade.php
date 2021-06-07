@@ -46,7 +46,7 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-{{--                                                            @include($models.'.form')--}}
+                                                            @include($models.'.form_edit',['method' => $method])
                                                         </div>
                                                     </div>
                                                 </div>
