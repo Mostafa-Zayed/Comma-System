@@ -10,8 +10,6 @@ use App\Http\Requests\Employess\Update;
 use App\Http\Traits\HelperTrait;
 use App\Models\Employee;
 
-//use Illuminate\Http\Request;
-
 class EmployeeController extends Controller
 {
     use HelperTrait;
@@ -85,9 +83,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Update $request, $id)
+    public function update(Update $request, Employee $employee)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$employee);
     }
 
     /**
@@ -96,9 +94,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($employee);
     }
 
      private function getModuleName()

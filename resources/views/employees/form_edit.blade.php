@@ -1,10 +1,11 @@
-<form action="{{route($models.'.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route($models.'.update',['employee' => $row])}}" method="post" enctype="multipart/form-data">
     @csrf
+    {{method_field('PUT')}}
     <div class="form-row">
         <div class="col-md-12 mb-4">
             @php $input = 'first name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -16,7 +17,7 @@
         <div class="col-md-12 mb-4">
             @php $input = 'last name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -28,7 +29,7 @@
         <div class="col-md-12 mb-4">
             @php $input = 'email'; @endphp
             <label for="{{$input}}">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
             @error(str_replace('_','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -57,6 +58,13 @@
             <span class="custom-file-container__custom-file__custom-file-control"></span>
         </label>
         <div class="custom-file-container__image-preview"></div>
+        @isset($row)
+            @if(! empty($row->image))
+                <div class="custom-file-container__image-preview">
+                    <img src="{{URL::to('uploads/employees/'.$row->image)}}" width="70%" height="100%">
+                </div>
+            @endif
+        @endisset
     </div>
     <div class="form-row">
         <div class="col-md-12">
@@ -94,8 +102,8 @@
         </div>
     </div>
     <div class="form-row float-right">
-        @php $input = 'create'; @endphp
-        <input class="btn btn-primary mb-4 mt-2 text-right" type="submit" value="{{$input}}" name="{{$input}}">
+        @php $input = 'update'; @endphp
+        <input class="btn btn-primary mb-4 mt-2 text-right" type="submit" value="{{ucfirst($input)}}" name="{{$input}}">
     </div>
 
 </form>

@@ -5,10 +5,13 @@ namespace App\Http\Repositories;
 use App\Models\Employee;
 use App\Http\Interfaces\EmployeeInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\True_;
 
 class EmployeeRepository implements EmployeeInterface
 {
+    private $imagesType = ['jpeg,png,jpg,gif,svg'];
     private $model;
     private $modelName;
     private $viewName;
@@ -46,6 +49,11 @@ class EmployeeRepository implements EmployeeInterface
 
     public function storeEmployee($request)
     {
+        if($request->hasFile('image')) {
+            $imageName = $this->fileUpload($request,$this->viewName,'image');
+            $this->model::create($request->except(['_token','create','image'])+['ssn' => str_shuffle(rand()),'image' => $imageName]);
+            return redirect()->route($this->viewName.'.index');
+        }
         $this->model::create($request->except(['_token','create'])+['ssn' => str_shuffle(rand())]);
         return redirect()->route($this->viewName.'.index');
     }
@@ -60,14 +68,45 @@ class EmployeeRepository implements EmployeeInterface
             ]);
     }
 
-    public function updateEmployee($request, $id)
+    public function updateEmployee($request, $employee)
     {
-        // TODO: Implement updateEmployee() method.
+        $data = $request->except(['_token','_method','update','password']);
+        // Check if request has Image and upload image
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->fileUpload($request,$this->viewName,'image');
+            $oldPath = public_path('uploads/'.$this->viewName.'/'.$employee->image);
+            if (File::exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+        // Chek if request has password and not null
+        if($request->filled('password')) {
+            $data['password'] = $request->whenFilled('password',function($input){
+                return bcrypt($input);
+            });
+        }
+        // Check if request has active field
+//        if($request->filled('active')) {
+//            $data['active'] = $request->whenFilled('active',function($input){
+//                return "on";
+//            });
+//        }
+        $data['active'] = $request->has('active') ? $request->active : 'off';
+
+        $employee->update($data);
+        return redirect()->route($this->viewName.'.edit',['employee' => $employee]);
     }
 
-    public function destroyEmployee($id)
+    public function destroyEmployee($employee)
     {
-        // TODO: Implement destroyEmployee() method.
+        $employee->delete();
+        return redirect()->route($this->viewName.'.index');
     }
 
+    private function fileUpload(&$resource,$folder,$key)
+    {
+        $imageName = rand().'.'.$resource->file($key)->getClientOriginalExtension();
+        $resource->file($key)->move(public_path('uploads/'.$folder),$imageName);
+        return $imageName;
+    }
 }

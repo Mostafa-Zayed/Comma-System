@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('email',100)->unique();
             $table->unsignedBigInteger('ssn')->unique();
             $table->string('password',100);
+            $table->string('image')->nullable();
             $table->enum('type',['super_admin','admin','employee','manager'])->default('employee');
             $table->enum('active',['on','off'])->default('off');
             $table->timestamps();

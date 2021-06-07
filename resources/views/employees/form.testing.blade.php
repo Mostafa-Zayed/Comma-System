@@ -1,5 +1,8 @@
-<form action="{{route($models.'.store')}}" method="post" enctype="multipart/form-data">
+@php $method = $method === 'edit' ? 'update' : 'store' ;@endphp
+
+<form action="{{route($models.'.'.$method,[strtolower($model) => isset($row) ? $row : ''])}}" method="post" enctype="multipart/form-data">
     @csrf
+    @if($method === 'update') {{method_field('PUT')}}@endif
     <div class="form-row">
         <div class="col-md-12 mb-4">
             @php $input = 'first name'; @endphp
@@ -57,6 +60,13 @@
             <span class="custom-file-container__custom-file__custom-file-control"></span>
         </label>
         <div class="custom-file-container__image-preview"></div>
+        @isset($row)
+            @if(! empty($row->image))
+                <div class="custom-file-container__image-preview">
+                    <img src="{{URL::to('uploads/employees/'.$row->image)}}" width="70%" height="100%">
+                </div>
+            @endif
+        @endisset
     </div>
     <div class="form-row">
         <div class="col-md-12">
@@ -95,7 +105,7 @@
     </div>
     <div class="form-row float-right">
         @php $input = 'create'; @endphp
-        <input class="btn btn-primary mb-4 mt-2 text-right" type="submit" value="{{$input}}" name="{{$input}}">
+        <input class="btn btn-primary mb-4 mt-2 text-right" type="submit" value="{{$method}}" name="{{$input}}">
     </div>
 
 </form>
