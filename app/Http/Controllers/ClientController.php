@@ -44,7 +44,6 @@ class ClientController extends Controller
      */
     public function store(Store $request)
     {
-        dd($request->all());
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
 
