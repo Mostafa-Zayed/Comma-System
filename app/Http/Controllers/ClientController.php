@@ -11,8 +11,6 @@ class ClientController extends Controller
     private $interface;
     private $modelName;
 
-    /** hi */
-
     public function __construct(ClientInterface $clientInterface)
     {
         $this->interface = $clientInterface;
