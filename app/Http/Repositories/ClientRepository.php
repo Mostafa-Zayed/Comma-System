@@ -44,6 +44,7 @@ class ClientRepository implements ClientInterface
 
     public function storeClient($request)
     {
+        dd($request->all());
         $this->model::create($request->except(['_token','create'])+['ssn' => str_shuffle(rand())]);
         return redirect()->route($this->viewName.'.index');
     }
