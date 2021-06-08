@@ -25,7 +25,7 @@ class EmployeeFactory extends Factory
             'firstname' => $this->faker->firstName(),
             'lastname' => $this->faker->firstName('male'),
             'email' => $this->faker->safeEmail,
-            'ssn' => $this->faker->numberBetween(10000,1000000),
+            'ssn' => str_shuffle(rand()),
             'password' => bcrypt('password'),
             'type' => $this->faker->randomElement(['super_admin','admin','manager','employee']),
             'active' => $this->faker->randomElement(['on','off'])

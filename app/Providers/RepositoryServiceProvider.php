@@ -38,12 +38,12 @@ class RepositoryServiceProvider extends ServiceProvider
 //        );
 
 
-        /* Module
+        // Room Module
         $this->app->bind(
-            'App\Http\Interfaces\[Interface Name]',
-            'App\Http\Repositories\[Repository Name]'
+            'App\Http\Interfaces\RoomInterface',
+            'App\Http\Repositories\RoomRepository'
         );
-        */
+
     }
 
     /**

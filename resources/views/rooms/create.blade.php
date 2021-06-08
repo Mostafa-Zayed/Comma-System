@@ -1,8 +1,5 @@
 @extends('layout.app')
-@php
-    $types = ['super_admin','admin','manager','employee'];
-    $method = 'edit';
-@endphp
+@php $method = 'create';@endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
@@ -19,11 +16,11 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method,$row])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
-                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.'create')}}">Create {{$model}}</a>
+                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
                 </div>
             </div>
             <!-- Start Row -->
@@ -46,7 +43,7 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form_edit',['method' => $method])
+                                                                @include($models.'.form')
                                                         </div>
                                                     </div>
                                                 </div>
@@ -54,6 +51,9 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+
                             </div>
                         </div>
                     </div>

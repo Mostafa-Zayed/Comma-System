@@ -27,9 +27,10 @@ class Store extends FormRequest
         return [
             'firstname' => 'required|max:50|min:3|string',
             'lastname' => 'required|min:3|string',
-            'email' => 'required|string|max:100|min:3|unique:employees',
+            'email' => 'required|string|max:100|min:3|unique:employees|email',
             'password' => 'required|min:9|max:100|string',
-            'type' => ['required',Rule::in(['admin','super_admin','manager','employee'])]
+            'type' => ['required',Rule::in(['admin','super_admin','manager','employee'])],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }
