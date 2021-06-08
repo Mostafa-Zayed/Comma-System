@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Interfaces\ClientInterface;
-use Illuminate\Http\Request;
-use App\Http\Requests\Clients\Store;
+use App\Http\Interfaces\RoomInterface;
 
-class ClientController extends Controller
+use Illuminate\Http\Request;
+
+class RoomController extends Controller
 {
     private $interface;
     private $modelName;
 
-    public function __construct(ClientInterface $clientInterface)
+    public function __construct(RoomInterface $roomInterface)
     {
-        $this->interface = $clientInterface;
+        $this->interface = $roomInterface;
         $this->modelName = $this->getModuleName();
     }
     /**
@@ -42,9 +42,8 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Store $request)
+    public function store(Request $request)
     {
-        dd($request->all());
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
 

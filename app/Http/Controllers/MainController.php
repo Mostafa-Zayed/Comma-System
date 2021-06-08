@@ -11,6 +11,8 @@ class MainController extends Controller
     private $interface;
     private $modelName;
 
+    /** hi from room-module */
+
     public function __construct(MainInterface $mainInterface)
     {
         $this->interface = $mainInterface;
