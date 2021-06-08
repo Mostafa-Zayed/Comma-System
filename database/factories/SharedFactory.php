@@ -22,7 +22,10 @@ class SharedFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'price' => rand(200,1000),
+            'max_hours' => 6,
+            'employee_id' => \App\Models\Employee::select('id')->get()->random()->id,
+            'status' => $this->faker->randomElement(['on','off'])
         ];
     }
 }
