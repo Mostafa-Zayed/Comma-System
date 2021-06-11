@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Room::factory(20)->create();
         \App\Models\Type::factory(4)->create();
         \App\Models\Shared::factory(1)->create();
+        \App\Models\Session::factory(10)->create();
     }
 }
