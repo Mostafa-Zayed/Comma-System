@@ -1,8 +1,6 @@
 @extends('layout.app')
-@php
-    $types = ['super_admin','admin','manager','employee'];
-    $method = 'create';
-@endphp
+
+@php $method = 'create'; @endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
@@ -12,7 +10,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
     <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
+    <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
+@endsection
 @section('content')
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
@@ -45,8 +46,8 @@
                                                 </div>
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-12 mx-auto">
-                                                                @include($models.'.form')
+                                                        <div class="col-lg-12 col-12 mx-auto">
+                                                                @include($models.'.form',['clients' => $clients])
                                                         </div>
                                                     </div>
                                                 </div>
@@ -72,8 +73,17 @@
     <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
     <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
     <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+    <script src="{{asset('plugins/flatpickr/flatpickr.js')}}"></script>
     <script>
         var firstUpload = new FileUploadWithPreview('myFirstImage')
+    </script>
+    <script>
+        var f2 = flatpickr(document.getElementById('dateTimeFlatpickr'), {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
     </script>
 
 

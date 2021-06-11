@@ -3,7 +3,9 @@
 namespace App\Http\Repositories;
 
 use App\Http\Interfaces\SessionInterface;
+use App\Models\Client;
 use App\Models\Session;
+use App\Models\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -38,12 +40,20 @@ class SessionRepository implements SessionInterface
 
     public function createSession()
     {
-        // TODO: Implement createSession() method.
+        $types = Type::select('id','name')->get();
+        $clients = Client::select('id','ssn','name')->where('status','on')->get();
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName,
+                'types' => $types,
+                'clients' => $clients
+            ]);
     }
 
     public function storeSession($request)
     {
-        // TODO: Implement storeSession() method.
+        dd($request->all());
     }
 
     public function editSession($id)

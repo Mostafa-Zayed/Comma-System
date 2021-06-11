@@ -9,4 +9,9 @@ class Client extends Model
 {
     use HasFactory;
     protected  $fillable = ['name','ssn','email','status','job','employee_id','phone'];
+
+    public function session(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne('\App\Models\Session','client_id','id');
+    }
 }

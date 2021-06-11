@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
-    protected $fillable = ['start','end','employee_id','type_id','quantity'];
+    protected $fillable = ['start','end','employee_id','type_id','quantity','client_id'];
 
 
     // RelationShip With Employee
@@ -21,5 +21,11 @@ class Session extends Model
     public function type()
     {
         return $this->belongsTo('App\Models\Type','type_id','id');
+    }
+
+    // RelationShip With Client
+    public function client()
+    {
+        return $this->belongsTo('\App\Models\Client','client_id','id');
     }
 }

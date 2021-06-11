@@ -28,6 +28,11 @@ class MainController extends Controller
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
     }
 
+    public function showSession()
+    {
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+    }
+
      private function getModuleName()
      {
          $data = explode('\\',__CLASS__);

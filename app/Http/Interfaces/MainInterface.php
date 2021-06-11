@@ -5,7 +5,7 @@ namespace App\Http\Interfaces;
 interface MainInterface
 {
     public function indexMain();
-
+    public function showSessions();
      /**
      * public function showTesting($id);
      *
