@@ -2,9 +2,14 @@
     @csrf
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'first name'; @endphp
-            <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            @php $input = 'ssn'; @endphp
+            <label for="e_mail">{{ucwords('Client Id')}}</label>
+            <select class="form-control  basic" name="client_id[]">
+                <option selected>Search By Ssn</option>
+                @foreach($clients as $client)
+                <option value="{{$client->id}}">{{$client->ssn}}</option>
+                @endforeach
+            </select>
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -14,9 +19,14 @@
     </div>
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'last name'; @endphp
-            <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            @php $input = 'name'; @endphp
+            <label for="e_mail">{{ucwords('Client Name')}}</label>
+            <select class="form-control  basic" name="client_id[]">
+                <option selected>Search By Name</option>
+                @foreach($clients as $client)
+                    <option  value="{{$client->id}}">{{$client->name}}</option>
+                @endforeach
+            </select>
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -26,10 +36,10 @@
     </div>
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'email'; @endphp
-            <label for="{{$input}}">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
-            @error(str_replace('_','',$input))
+            @php $input = 'start'; @endphp
+            <label for="e_mail">{{ucwords($input)}}</label>
+            <input id="dateTimeFlatpickr" value="<?=date('Y-m-d h:m');?>" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date.." readonly="readonly" name="start">
+            @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
             </div>
@@ -38,59 +48,18 @@
     </div>
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'password'; @endphp
-            <label for="{{$input}}">{{ucwords($input)}}</label>
-            <input type="{{$input == 'password' ? $input : 'text'}}" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="">
-            @error(str_replace('_','',$input))
+            @php $input = 'type_id'; @endphp
+            <label for="e_mail">{{ucwords('Department')}}</label>
+            <select class="form-control  basic" name="{{$input}}">
+                @foreach($types as $type)
+                    <option  value="{{$type->id}}">{{ucfirst($type->name)}}</option>
+                @endforeach
+            </select>
+            @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
             </div>
             @enderror
-        </div>
-    </div>
-    @php $input = 'image'; @endphp
-    <div class="custom-file-container" data-upload-id="myFirstImage">
-        <label>Upload (Single File) <a href="" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-        <label class="custom-file-container__custom-file" >
-            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" name="{{$input}}">
-            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-            <span class="custom-file-container__custom-file__custom-file-control"></span>
-        </label>
-        <div class="custom-file-container__image-preview"></div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-12">
-            @php $input = 'type'; @endphp
-            <label for="{{$input}}">{{ucwords($input)}}</label>
-            <div id="select_menu" class="form-group mb-4">
-                <select class="custom-select" name="{{$input}}">
-                    <option value="">Open this select menu</option>
-                    @foreach($types as $type)
-                        <option value="{{$type}}" @if(isset($row) && $row->{str_replace(' ','',$input)} === $type) selected @endif>{{ucwords(str_replace('_',' ',$type))}}</option>
-                    @endforeach
-                </select>
-                <div class="valid-feedback">Example valid custom select feedback</div>
-                <div class="invalid-feedback">
-                    Please Select the field
-                </div>
-            </div>
-            @error(str_replace('_','',$input))
-            <div class="invalid-feedback" style="display: block;">
-                {{$message}}
-            </div>
-            @enderror
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-12">
-            @php $input = 'active'; @endphp
-            <label for="{{$input}}">{{ucwords($input)}}</label>
-            <div class="col-md-10 float-right">
-                <label class="switch s-icons s-outline s-outline-primary mr-2">
-                    <input type="checkbox" @isset($row) {{$row->active === 'on' ? 'checked' : ''}}@endisset name="{{$input}}">
-                    <span class="slider"></span>
-                </label>
-            </div>
         </div>
     </div>
     <div class="form-row float-right">
