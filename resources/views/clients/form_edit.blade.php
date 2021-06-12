@@ -25,6 +25,20 @@
             @enderror
         </div>
     </div>
+
+    {{--    <div class="form-row">--}}
+    {{--        <div class="col-md-12">--}}
+    {{--            @php $input = 'status'; @endphp--}}
+    {{--            <label for="{{$input}}">{{ucwords($input)}}</label>--}}
+    {{--            <div class="col-md-10 float-right">--}}
+    {{--                <label class="switch s-icons s-outline s-outline-primary mr-2">--}}
+    {{--                    <input type="checkbox" @isset($row) {{$row->status === 'on' ? 'checked' : ''}}@endisset name="{{$input}}">--}}
+    {{--                    <span class="slider"></span>--}}
+    {{--                </label>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+
 {{--    <div class="form-row">--}}
 {{--        <div class="col-md-12">--}}
 {{--            @php $input = 'status'; @endphp--}}
@@ -37,6 +51,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
+
     <div class="form-row float-right">
         @php $input = 'update'; @endphp
         <input class="btn btn-primary mb-4 mt-2 text-right" type="submit" value="{{ucfirst($input)}}" name="{{$input}}">

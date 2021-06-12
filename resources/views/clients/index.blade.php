@@ -21,6 +21,24 @@
                 </div>
             </div>
             <!-- Start Row -->
+
+            <div class="row layout-top-spacing layout-spacing">
+                <div class="col-lg-12">
+
+                    @if(Session::has('success'))
+                        <div class="alert alert-success mb-4" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>
+                            <strong>Success </strong> {!! Session::get('success') !!}
+                        </div>
+                    @endif
+
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content widget-content-area">
+                            <div class="table-responsive mb-4">
+                                <div id="column-filter_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="row">
+                                        @include($models.'.table',['models' => $models,'rows' => $rows])
+
                 <div class="row layout-top-spacing layout-spacing">
                     <div class="col-lg-12">
 
@@ -38,12 +56,14 @@
                                         <div class="row">
                                             @include($models.'.table',['models' => $models,'rows' => $rows])
                                         </div>
+r
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <!-- End Row -->
             @include('includes.footer')
         </div>
