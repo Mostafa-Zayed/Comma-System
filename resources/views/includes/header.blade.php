@@ -22,5 +22,6 @@
     <link rel="stylesheet" href="{{asset('plugins/font-icons/fontawesome/css/fontawesome.css')}}">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @yield('datatable')
+    @yield('css')
 
 </head>

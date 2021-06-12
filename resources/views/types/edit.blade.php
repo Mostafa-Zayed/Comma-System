@@ -1,20 +1,16 @@
 @extends('layout.app')
-@php $method = 'edit'; @endphp
+@php
+    $types = ['super_admin','admin','manager','employee'];
+    $method = 'edit';
+@endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
 @section('datatable')
-
-    {{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-    {{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
-{{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-{{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
+    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -52,7 +48,6 @@
                                                         <div class="col-lg-6 col-12 mx-auto">
                                                             @include($models.'.form_edit',['method' => $method])
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>

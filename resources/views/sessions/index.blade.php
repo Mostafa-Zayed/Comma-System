@@ -1,8 +1,5 @@
 @extends('layout.app')
-@php
-    $method = 'index';
-    $types = ['super_admin','admin','manager','employee'];
-@endphp
+@php $method = 'index'; @endphp
 @section('title',ucfirst($models.' | '.$method))
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />

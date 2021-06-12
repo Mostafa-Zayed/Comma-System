@@ -1,15 +1,14 @@
 @extends('layout.app')
-@php
-    $method = 'index';
-    $types = ['super_admin','admin','manager','employee'];
-@endphp
+@php $method = 'index'; @endphp
 @section('title',ucfirst($models.' | '.$method))
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link href="{{asset('assets/css/tables/table-basic.css')}}" rel="stylesheet" type="text/css" />
 @endsection
+@php
 
+@endphp
 @section('content')
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
@@ -41,8 +40,10 @@
                         </div>
                     </div>
                 </div>
+
             <!-- End Row -->
             @include('includes.footer')
+
         </div>
     </div>
 @endsection
