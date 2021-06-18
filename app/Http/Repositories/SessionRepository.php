@@ -57,17 +57,21 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
-        $data = $request->except(['_token', 'create', 'client_id']);
+        $data = $request->except(['_token', 'create']);
         if ($request->has('client_id')) {
             $client_id = $this->validClient($request->client_id);
             $data['client_id'] = $client_id;
             $data['employee_id'] = 1;
             $this->model::create($data);
-            dd('ok');
+            return redirect()->route('index');
+        }
+        if ($request->filled('name')) {
+            $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
+            $data['client_id'] = $client->id;
         }
         $data['employee_id'] = 1;
         $this->model::create($data);
-        dd('ok');
+        return redirect()->route('index');
     }
 
     public function editSession($id)
