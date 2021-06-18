@@ -41,7 +41,9 @@
                             @if(! empty($row->end))
                             <td><button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button></td>
                             @endif
+
                             <td>@isset($row->client->name) {{$row->client->name}}@endisset</td>
+
                         </tr>
                         @endforeach
                     </tbody>

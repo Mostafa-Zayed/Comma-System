@@ -13,7 +13,7 @@ use App\Http\Controllers\SessionController;
 Route::resource('employees', EmployeeController::class)->where(['employee' => '[0-9]+']);
 
 /**  Clients Urls */
-Route::resource('clients','\App\Http\Controllers\ClientController')->where(['client' => '[0-9]+']);
+Route::resource('clients',ClientController::class)->where(['client' => '[0-9]+']);
 
 /** Route Dashboard */
 Route::get('/', [MainController::class, 'index'])->name('index');
