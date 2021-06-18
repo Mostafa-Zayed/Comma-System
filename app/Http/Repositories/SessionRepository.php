@@ -57,14 +57,17 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
-        if ($request->client_id[0] === $request->client_id[1]) {
-            $this->model::create($request->ecept(['__token']));
-            return redirect()->route('index');
-        } else {
-            dd('error');
+        $data = $request->except(['_token', 'create', 'client_id']);
+        if ($request->has('client_id')) {
+            $client_id = $this->validClient($request->client_id);
+            $data['client_id'] = $client_id;
+            $data['employee_id'] = 1;
+            $this->model::create($data);
+            dd('ok');
         }
-        // if ($request->client_id[0])
-        // $this->model::create([])
+        $data['employee_id'] = 1;
+        $this->model::create($data);
+        dd('ok');
     }
 
     public function editSession($id)
@@ -80,5 +83,10 @@ class SessionRepository implements SessionInterface
     public function destroySession($id)
     {
         // TODO: Implement destroySession() method.
+    }
+
+    private function validClient(array $client_id)
+    {
+        return (count($client_id) > 1) ? ($client_id[0] == $client_id[1] ? $client_id[0] : false) : $client_id[0];
     }
 }
