@@ -22,15 +22,17 @@ class SessionRepository implements SessionInterface
     }
     public function indexSession()
     {
-        $rows = $this->model::with(['type' => function($query){
-             $query->select('name','id');
-        }])->select('id','start','end','created_at','type_id')->get();
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        $rows = $this->model::with(['type' => function ($query) {
+            $query->select('name', 'id');
+        }])->select('id', 'start', 'end', 'created_at', 'type_id')->get();
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'rows' => $rows
-            ]);
+            ]
+        );
     }
 
     public function showSession($id)
@@ -40,20 +42,32 @@ class SessionRepository implements SessionInterface
 
     public function createSession()
     {
-        $types = Type::select('id','name')->get();
-        $clients = Client::select('id','ssn','name')->where('status','on')->get();
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        $types = Type::select('id', 'name')->get();
+        $clients = Client::select('id', 'ssn', 'name')->where('status', 'on')->get();
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'types' => $types,
                 'clients' => $clients
-            ]);
+            ]
+        );
     }
 
     public function storeSession($request)
     {
-        dd($request->all());
+        $data = $request->except(['_token', 'create', 'client_id']);
+        if ($request->has('client_id')) {
+            $client_id = $this->validClient($request->client_id);
+            $data['client_id'] = $client_id;
+            $data['employee_id'] = 1;
+            $this->model::create($data);
+            dd('ok');
+        }
+        $data['employee_id'] = 1;
+        $this->model::create($data);
+        dd('ok');
     }
 
     public function editSession($id)
@@ -69,5 +83,10 @@ class SessionRepository implements SessionInterface
     public function destroySession($id)
     {
         // TODO: Implement destroySession() method.
+    }
+
+    private function validClient(array $client_id)
+    {
+        return (count($client_id) > 1) ? ($client_id[0] == $client_id[1] ? $client_id[0] : false) : $client_id[0];
     }
 }
