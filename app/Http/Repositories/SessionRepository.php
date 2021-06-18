@@ -22,15 +22,17 @@ class SessionRepository implements SessionInterface
     }
     public function indexSession()
     {
-        $rows = $this->model::with(['type' => function($query){
-             $query->select('name','id');
-        }])->select('id','start','end','created_at','type_id')->get();
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        $rows = $this->model::with(['type' => function ($query) {
+            $query->select('name', 'id');
+        }])->select('id', 'start', 'end', 'created_at', 'type_id')->get();
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'rows' => $rows
-            ]);
+            ]
+        );
     }
 
     public function showSession($id)
@@ -40,20 +42,29 @@ class SessionRepository implements SessionInterface
 
     public function createSession()
     {
-        $types = Type::select('id','name')->get();
-        $clients = Client::select('id','ssn','name')->where('status','on')->get();
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        $types = Type::select('id', 'name')->get();
+        $clients = Client::select('id', 'ssn', 'name')->where('status', 'on')->get();
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'types' => $types,
                 'clients' => $clients
-            ]);
+            ]
+        );
     }
 
     public function storeSession($request)
     {
-        dd($request->all());
+        if ($request->client_id[0] === $request->client_id[1]) {
+            $this->model::create($request->ecept(['__token']));
+            return redirect()->route('index');
+        } else {
+            dd('error');
+        }
+        // if ($request->client_id[0])
+        // $this->model::create([])
     }
 
     public function editSession($id)
