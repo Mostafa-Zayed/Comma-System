@@ -57,6 +57,7 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
+        //dd($request->all());
         $data = $request->except(['_token', 'create']);
         if ($request->has('client_id')) {
             $client_id = $this->validClient($request->client_id);
