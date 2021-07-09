@@ -19,6 +19,7 @@ class CreateSessionsTable extends Migration
             $table->dateTime('end')->nullable();
             $table->integer('quantity')->nullable();
             $table->enum('status', ['finished', 'not_start', 'progress'])->default('not_start');
+            $table->string('product')->nullable();
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
             $table->unsignedBigInteger('client_id')->nullable();
