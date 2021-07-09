@@ -50,9 +50,11 @@
                                 @endisset
                             </td>
                             <td>
-                                <form action="" method="post">
+                                <!-- <form action="" method="post">
                                     @csrf
-                                    <input type="text" name="" </form>
+                                    <input type="text" name="product">
+                                    <input type="submit" name="end" class="alert alert-danger" value="End Session">
+                                </form> -->
                             </td>
                         </tr>
                         @endforeach
