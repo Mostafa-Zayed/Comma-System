@@ -17,6 +17,7 @@
                             <th>Department</th>
                             <th class="">End</th>
                             <th class="">Client Name</th>
+                            <th>End Session</th>
                             {{-- <th class="" colspan="2">Active</th>--}}
                             {{-- <th class="text-center">Actions</th>--}}
                             {{-- <th class="checkbox-column">--}}
@@ -39,11 +40,20 @@
                             </td>
                             @endempty
                             @if(! empty($row->end))
-                            <td><button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button></td>
+                            <td>
+                                <button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button>
+                            </td>
                             @endif
-
-                            <td>@isset($row->client->name) {{$row->client->name}}@endisset</td>
-
+                            <td>
+                                @isset($row->client->name)
+                                {{$row->client->name}}
+                                @endisset
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    @csrf
+                                    <input type="text" name="" </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
