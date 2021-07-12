@@ -10,11 +10,7 @@ class MainRepository implements MainInterface
     private $modelName = 'Main';
     public function indexMain()
     {
-<<<<<<< HEAD
-        $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->paginate(10);
-=======
-        $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->get();
->>>>>>> c62ae79d58813761918c3412791ebde5b5237b6e
+        $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->orderBy('id','desc')->paginate();
         return view(
             substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [

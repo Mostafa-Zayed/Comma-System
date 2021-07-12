@@ -13,37 +13,46 @@
                     @if(! empty($rows) && $rows->count() > 0 )
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th class="" colspan="2">Start</th>
                             <th>Department</th>
                             <th class="">End</th>
                             <th class="">Client Name</th>
-                            {{-- <th class="" colspan="2">Active</th>--}}
-                            {{-- <th class="text-center">Actions</th>--}}
-                            {{-- <th class="checkbox-column">--}}
-                            {{-- <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">--}}
-                            {{-- <input type="checkbox" class="new-control-input todochkbox" id="todoAll">--}}
-                            {{-- <span class="new-control-indicator"></span>--}}
-                            {{-- </label>--}}
-                            {{-- </th>--}}
+                            <th>End Session</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php $counter = 1; @endphp
                         @foreach($rows as $row)
                         <tr>
+                            <td>{{$counter++}}</td>
                             <td>{{$row->start}}</td>
-                            <td>{{$row->created_at->diffForHumans()}}</td>
+                            <td>{{$row->start->diffForHumans()}}</td>
                             <td>{{$row->type->name}}</td>
                             @empty($row->end)
                             <td>
-                                <button class="btn btn-warning">Not Finished</button>
+                                <button class="btn btn-warning disabled">Not Finished</button>
                             </td>
                             @endempty
                             @if(! empty($row->end))
-                            <td><button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button></td>
+                            <td>
+                                <button class="btn btn-danger disabled">{{date('d-m-Y', strtotime($row->end))}}</button>
+                            </td>
                             @endif
-
-                            <td>@isset($row->client->name) {{$row->client->name}}@endisset</td>
-
+                            <td>
+                                @isset($row->client->name)
+                                {{$row->client->name}}
+                                @endisset
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" id="{{$row->id}}"> End Session</button>
+                                <form action=" {{route('sessions.end',['session' => $row->id])}}" method="post" id="{{$row->id}}" style="display: none;">
+                                    @csrf
+                                    <input type="text" name='product' class="form-control">
+                                    <br>
+                                    <input type="submit" name="end" value="Add Price" class="btn btn-danger">
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -52,11 +61,7 @@
                         <th>Department</th>
                         <th class="">End</th>
                         <th class="">Client Name</th>
-                        {{-- <th class="" colspan="2">Active</th>--}}
-                        {{-- <th class="text-center">Actions</th>--}}
-                        {{-- <th class="checkbox-column">--}}
-                        {{-- <button class="btn btn-danger">Delete</button>--}}
-                        {{-- </th>--}}
+                        <th>End Session</th>
                     </tfoot>
                     @endif
                 </table>

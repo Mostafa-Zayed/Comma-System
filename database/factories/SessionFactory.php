@@ -23,9 +23,10 @@ class SessionFactory extends Factory
     {
         return [
             'start' => now(),
-            'end'   => $this->faker->dateTimeBetween('now', '+ 30 minutes'),
-            'quantity' => 30,
-            'product' => rand(22, 234),
+            'end'   => null,
+            'quantity' => 0,
+            'product' => null,
+            'total' => 0,
             'status' => $this->faker->randomElement(['finished', 'not_start', 'progress']),
             'type_id' => \App\Models\Type::select('id')->get()->random()->id,
             'employee_id' => \App\Models\Employee::select('id')->get()->random()->id,

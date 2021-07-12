@@ -13,16 +13,19 @@ use App\Http\Controllers\SessionController;
 Route::resource('employees', EmployeeController::class)->where(['employee' => '[0-9]+']);
 
 /**  Clients Urls */
-Route::resource('clients',ClientController::class)->where(['client' => '[0-9]+']);
+Route::resource('clients', ClientController::class)->where(['client' => '[0-9]+']);
 
 /** Route Dashboard */
 Route::get('/', [MainController::class, 'index'])->name('index');
 
 /**  Rooms Urls */
-Route::resource('rooms',RoomController::class)->where(['room' => '[0-9]+']);
+Route::resource('rooms', RoomController::class)->where(['room' => '[0-9]+']);
 
 /**  Types Urls */
-Route::resource('types',TypeController::class)->where(['type' => '[0-9]+']);
+Route::resource('types', TypeController::class)->where(['type' => '[0-9]+']);
 
 /**  Sessions Urls */
-Route::resource('sessions',SessionController::class)->where(['type' => '[0-9]+']);
+Route::resource('sessions', SessionController::class)->where(['type' => '[0-9]+']);
+
+// End Session
+Route::post('sessions/{session}/end', [SessionController::class, 'end'])->name('sessions.end');

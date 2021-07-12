@@ -47,10 +47,20 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-md-12 mb-4">
-            @php $input = 'start'; @endphp
+        <div class="col-md-6 mb-4">
+            @php $input = 'day'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
-            <input id="dateTimeFlatpickr" value="<?= date('Y-m-d h:m'); ?>" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date.." readonly="readonly" name="start">
+            <input id="day" value="<?= date('Y-m-d'); ?>" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date.." readonly="readonly" name="day">
+            @error(str_replace(' ','',$input))
+            <div class="invalid-feedback" style="display: block;">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="col-md-6 mb-4">
+            @php $input = 'hour'; @endphp
+            <label for="e_mail">{{ucwords($input)}}</label>
+            <input id="hour" value="<?= date('h:i:m'); ?>" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date.." readonly="readonly" name="hour">
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -58,6 +68,7 @@
             @enderror
         </div>
     </div>
+
     <div class="form-row">
         <div class="col-md-12 mb-4">
             @php $input = 'type_id'; @endphp
