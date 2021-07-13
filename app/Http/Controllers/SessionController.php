@@ -23,7 +23,7 @@ class SessionController extends Controller
      */
     public function index()
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}();
     }
 
     /**
@@ -33,7 +33,7 @@ class SessionController extends Controller
      */
     public function create()
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}();
     }
 
     /**
@@ -44,7 +44,7 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request);
     }
 
     /**
@@ -55,7 +55,7 @@ class SessionController extends Controller
      */
     public function show($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
     }
 
     /**
@@ -66,7 +66,7 @@ class SessionController extends Controller
      */
     public function edit($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
     }
 
     /**
@@ -78,7 +78,7 @@ class SessionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $id);
     }
 
     /**
@@ -89,13 +89,18 @@ class SessionController extends Controller
      */
     public function destroy($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
     }
 
+    // End Method 
+    public function end(Request $request, $id)
+    {
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $id);
+    }
     private function getModuleName()
     {
-        $data = explode('\\',__CLASS__);
+        $data = explode('\\', __CLASS__);
         $controllerName = end($data);
-        return substr($controllerName,0,strpos($controllerName,'Controller'));
+        return substr($controllerName, 0, strpos($controllerName, 'Controller'));
     }
 }
