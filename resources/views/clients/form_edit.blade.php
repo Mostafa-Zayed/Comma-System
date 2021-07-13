@@ -5,7 +5,19 @@
         <div class="col-md-12 mb-4">
             @php $input = 'name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{$input}) {{ $row->{$input} }}@endisset">
+            @error(str_replace(' ','',$input))
+            <div class="invalid-feedback" style="display: block;">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-4">
+            @php $input = 'phone'; @endphp
+            <label for="{{$input}}">{{ucwords($input)}}</label>
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{$input}){{$row->{$input} }}@endisset">
             @error(str_replace(' ','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
@@ -17,12 +29,36 @@
         <div class="col-md-12 mb-4">
             @php $input = 'email'; @endphp
             <label for="{{$input}}">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
+            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{$input}){{$row->{$input} }}@endisset">
             @error(str_replace('_','',$input))
             <div class="invalid-feedback" style="display: block;">
                 {{$message}}
             </div>
             @enderror
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-4">
+            @php $input = 'job'; @endphp
+            <label for="{{$input}}">{{ucwords($input)}}</label>
+            <input type="{{$input == 'password' ? $input : 'text'}}" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{$input}){{$row->{$input} }}@endisset">
+            @error(str_replace('_','',$input))
+            <div class="invalid-feedback" style="display: block;">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12">
+            @php $input = 'status'; @endphp
+            <label for="{{$input}}">{{ucwords($input)}}</label>
+            <div class="col-md-10 float-right">
+                <label class="switch s-icons s-outline s-outline-primary mr-2">
+                    <input type="checkbox"  name="{{$input}}" @if($row->{$input} == 'on') checked @endif>
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
     </div>
     {{--    <div class="form-row">--}}
