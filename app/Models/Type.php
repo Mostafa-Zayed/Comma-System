@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','status'];
+    protected $fillable = ['name','status','price'];
+
 
     // RelationShip with Session
     public function sessions()
