@@ -30,12 +30,23 @@ class TypeRepository implements TypeInterface
 
     public function showType($id)
     {
-        // TODO: Implement showType() method.
+        if ($type = $this->model::find($id)) {
+           return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+               [
+                   'model' => $this->modelName,
+                   'models' => $this->viewName,
+                   'row' => $type
+               ]);
+        }
     }
 
     public function createType()
     {
-        // TODO: Implement createType() method.
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName
+            ]);
     }
 
     public function storeType($request)
