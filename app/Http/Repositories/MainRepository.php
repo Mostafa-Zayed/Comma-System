@@ -8,9 +8,11 @@ use App\Models\Session;
 class MainRepository implements MainInterface
 {
     private $modelName = 'Main';
+
     public function indexMain()
     {
         $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->orderBy('id','desc')->paginate();
+
         return view(
             substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
