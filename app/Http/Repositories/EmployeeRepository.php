@@ -7,7 +7,6 @@ use App\Http\Interfaces\EmployeeInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\True_;
 
 class EmployeeRepository implements EmployeeInterface
 {

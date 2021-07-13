@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Interfaces\ClientInterface;
-use App\Models\Client;
+use App\Models\Session;
 use Illuminate\Http\Request;
-use App\Http\Requests\Clients\Store;
+use App\Http\Interfaces\SessionInterface;
 
-class ClientController extends Controller
+class SessionController extends Controller
 {
     private $interface;
     private $modelName;
 
-    public function __construct(ClientInterface $clientInterface)
+    public function __construct(SessionInterface $interface)
     {
-        $this->interface = $clientInterface;
+        $this->interface = $interface;
         $this->modelName = $this->getModuleName();
     }
     /**
@@ -43,7 +42,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Store $request)
+    public function store(Request $request)
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
     }
@@ -51,12 +50,12 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $client
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
     /**
@@ -65,9 +64,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
     /**
@@ -77,9 +76,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$client);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
     }
 
     /**
@@ -88,13 +87,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function destroy(Client $client)
-=======
-    public function destroy(Client $id)
->>>>>>> bf3fedc302fe4e102757998e78df889d7ebedb53
+    public function destroy($id)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
     }
 
     private function getModuleName()

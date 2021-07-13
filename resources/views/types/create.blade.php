@@ -1,27 +1,16 @@
 @extends('layout.app')
-@php $method = 'edit'; @endphp
+@php
+    $types = ['super_admin','admin','manager','employee'];
+    $method = 'create';
+@endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
 @section('datatable')
-<<<<<<< HEAD
-        <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
-        <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
-=======
-
-    {{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-    {{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
-{{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-{{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
->>>>>>> bf3fedc302fe4e102757998e78df889d7ebedb53
+    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -30,11 +19,11 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method,$row])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
-                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.'create')}}">Create {{$model}}</a>
+                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
                 </div>
             </div>
             <!-- Start Row -->
@@ -57,15 +46,17 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form_edit',['method' => $method])
+                                                                @include($models.'.form')
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+
                             </div>
                         </div>
                     </div>

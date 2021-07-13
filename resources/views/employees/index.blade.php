@@ -9,16 +9,14 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link href="{{asset('assets/css/tables/table-basic.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-@php
 
-@endphp
 @section('content')
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
@@ -43,10 +41,8 @@
                         </div>
                     </div>
                 </div>
-
             <!-- End Row -->
             @include('includes.footer')
-
         </div>
     </div>
 @endsection

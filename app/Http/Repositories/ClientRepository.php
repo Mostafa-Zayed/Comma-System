@@ -45,7 +45,7 @@ class ClientRepository implements ClientInterface
     public function storeClient($request)
     {
         $this->model::create($request->except(['_token','create'])+['ssn' => str_shuffle(rand())]);
-        return redirect()->route($this->viewName.'.index')->with('success','Client Created successfully');
+        return redirect()->route($this->viewName.'.index')->with('success','Client :<strong>'.$request->name.'</strong> Added Successfully');
     }
 
     public function editClient($client)

@@ -1,40 +1,30 @@
 @extends('layout.app')
-@php $method = 'edit'; @endphp
+
+@php $method = 'create'; @endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
 @section('datatable')
-<<<<<<< HEAD
-        <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
-        <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
-=======
-
-    {{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-    {{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
-{{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
-{{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
-
->>>>>>> bf3fedc302fe4e102757998e78df889d7ebedb53
+    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
+    <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
+@endsection
 @section('content')
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method,$row])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
-                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.'create')}}">Create {{$model}}</a>
+                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
                 </div>
             </div>
             <!-- Start Row -->
@@ -56,16 +46,18 @@
                                                 </div>
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form_edit',['method' => $method])
+                                                        <div class="col-lg-12 col-12 mx-auto">
+                                                                @include($models.'.form',['clients' => $clients])
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+
                             </div>
                         </div>
                     </div>
@@ -81,8 +73,17 @@
     <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
     <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
     <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+    <script src="{{asset('plugins/flatpickr/flatpickr.js')}}"></script>
     <script>
         var firstUpload = new FileUploadWithPreview('myFirstImage')
+    </script>
+    <script>
+        var f2 = flatpickr(document.getElementById('dateTimeFlatpickr'), {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
     </script>
 
 

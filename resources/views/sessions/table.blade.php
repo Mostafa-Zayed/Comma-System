@@ -13,10 +13,10 @@
                     @if(! empty($rows) && $rows->count() > 0 )
                         <thead>
                         <tr>
-                            <th class="">Name</th>
-                            <th class="">Email</th>
-                            <th class="" colspan="2">Type</th>
-                            <th class="" colspan="2">Active</th>
+                            <th class="" colspan="2">Start</th>
+                            <th>Department</th>
+                            <th class="">End</th>
+{{--                            <th class="" colspan="2">Active</th>--}}
                             <th class="text-center">Actions</th>
                             <th class="checkbox-column">
                                 <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
@@ -29,23 +29,17 @@
                         <tbody>
                         @foreach($rows as $row)
                             <tr>
+                                <td>{{$row->start}}</td>
+                                <td>{{$row->created_at->diffForHumans()}}</td>
+                                <td>{{$row->type->name}}</td>
+                                @empty($row->end)
                                 <td>
-                                    <p class="mb-0">{{ucwords($row->fullname)}}</p>
+                                    <button class="btn btn-warning">Not Finished</button>
                                 </td>
-                                <td>{{$row->email}}</td>
-                                <td>{{$row->type}}</td>
-                                <td class="text-center">
-                                    <div class="dropdown custom-dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink10">
-                                            @foreach($types as $type)
-                                                <li class="dropdown-item" href="javascript:void(0);">{{ucfirst($type)}}</li>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </td>
+                                @endempty
+                                @if(! empty($row->end))
+                                   <td><button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button></td>
+                                @endif
                                 <td>
                                     @if($row->active == 'on')
                                         <span class="shadow-none badge badge-success">Active</span>
@@ -84,7 +78,7 @@
                         @endforeach
                         </tbody>
                         <tfoot>
-                        <th class="">Name</th>
+                        <th class="" colspan="2">Start</th>
                         <th class="">Email</th>
                         <th class="" colspan="2">Type</th>
                         <th class="" colspan="2">Active</th>
