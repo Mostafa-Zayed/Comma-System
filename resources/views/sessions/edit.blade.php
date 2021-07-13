@@ -1,6 +1,11 @@
 @extends('layout.app')
-@php $method = 'create'; @endphp
-@section('title',ucwords($models.' | '.$model))
+@php
+    $types = ['super_admin','admin','manager','employee'];
+    $method = 'edit';
+@endphp
+@section('title')
+    {{ucwords($model." | ".$method) }}
+@endsection
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
@@ -14,11 +19,11 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method,$row])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
-                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
+                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.'create')}}">Create {{$model}}</a>
                 </div>
             </div>
             <!-- Start Row -->
@@ -41,7 +46,7 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form')
+                                                            @include($models.'.form_edit',['method' => $method])
                                                         </div>
                                                     </div>
                                                 </div>
@@ -49,9 +54,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-
                             </div>
                         </div>
                     </div>
@@ -77,3 +79,5 @@
         $('[data-toggle="tooltip"]').tooltip()
     </script>
 @endsection
+
+

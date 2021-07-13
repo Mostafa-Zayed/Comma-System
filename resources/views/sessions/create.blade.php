@@ -1,11 +1,15 @@
 @extends('layout.app')
 @php $method = 'create'; @endphp
-@section('title',ucwords($models.' | '.$model))
-@section('datatable')
+@section('title')
+    {{ucwords($model." | ".$method)}}
+@endsection
+@section('css')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
     <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
+    <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -14,7 +18,7 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
@@ -40,8 +44,8 @@
                                                 </div>
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form')
+                                                        <div class="col-lg-12 col-12 mx-auto">
+                                                                @include($models.'.form',['clients' => $clients])
                                                         </div>
                                                     </div>
                                                 </div>
@@ -67,8 +71,22 @@
     <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
     <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
     <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+    <script src="{{asset('plugins/flatpickr/flatpickr.js')}}"></script>
     <script>
         var firstUpload = new FileUploadWithPreview('myFirstImage')
+    </script>
+    <script>
+        var f2 = flatpickr(document.getElementById('day'), {
+            enableTime: true,
+            dateFormat: "Y-m-d",
+        });
+        var f2 = flatpickr(document.getElementById('hour'), {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i:m",
+        });
     </script>
 
 
@@ -77,3 +95,5 @@
         $('[data-toggle="tooltip"]').tooltip()
     </script>
 @endsection
+
+

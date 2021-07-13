@@ -13,10 +13,10 @@
                     @if(! empty($rows) && $rows->count() > 0 )
                         <thead>
                         <tr>
-                            <th class="">Name</th>
-                            <th class="">Email</th>
-                            <th class="">Phone</th>
-                            <th class="" colspan="2">Status</th>
+                            <th class="" colspan="2">Start</th>
+                            <th>Department</th>
+                            <th class="">End</th>
+{{--                            <th class="" colspan="2">Active</th>--}}
                             <th class="text-center">Actions</th>
                             <th class="checkbox-column">
                                 <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
@@ -29,21 +29,27 @@
                         <tbody>
                         @foreach($rows as $row)
                             <tr>
+                                <td>{{$row->start}}</td>
+                                <td>{{$row->created_at->diffForHumans()}}</td>
+                                <td>{{$row->type->name}}</td>
+                                @empty($row->end)
                                 <td>
-                                    <p class="mb-0">{{ucwords($row->name)}}</p>
+                                    <button class="btn btn-warning">Not Finished</button>
                                 </td>
-                                <td>{{$row->email}}</td>
-                                <td>{{$row->phone}}</td>
+                                @endempty
+                                @if(! empty($row->end))
+                                   <td><button class="btn btn-danger">{{date('d-m-Y', strtotime($row->end))}}</button></td>
+                                @endif
                                 <td>
-                                    @if($row->status == 'on')
-                                        <span class="shadow-none badge badge-success">Accepted</span>
+                                    @if($row->active == 'on')
+                                        <span class="shadow-none badge badge-success">Active</span>
                                     @else
-                                        <span class="shadow-none badge badge-danger">Not Accepted</span>
+                                        <span class="shadow-none badge badge-danger">Not Active</span>
                                     @endif
                                 </td>
                                 <td class="checkbox-column text-center">
                                     <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input" @if($row->status === 'on') checked @endisset>
+                                        <input type="checkbox" class="new-control-input" @if($row->active === 'on') checked @endisset>
                                         <span class="new-control-indicator"></span>
                                     </label>
                                 </td>
@@ -72,10 +78,10 @@
                         @endforeach
                         </tbody>
                         <tfoot>
-                        <th class="">Name</th>
+                        <th class="" colspan="2">Start</th>
                         <th class="">Email</th>
-                        <th>Phone</th>
-                        <th class="" colspan="2">Status</th>
+                        <th class="" colspan="2">Type</th>
+                        <th class="" colspan="2">Active</th>
                         <th class="text-center">Actions</th>
                         <th class="checkbox-column">
                             <button class="btn btn-danger">Delete</button>

@@ -44,6 +44,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\RoomRepository'
         );
 
+        // Session Module
+        $this->app->bind(
+            'App\Http\Interfaces\SessionInterface',
+            'App\Http\Repositories\SessionRepository'
+        );
     }
 
     /**
