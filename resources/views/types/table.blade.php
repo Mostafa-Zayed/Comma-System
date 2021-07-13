@@ -15,6 +15,7 @@
                         <tr>
                             <th>ID</th>
                             <th class="">Name</th>
+                            <th class="">Price</th>
                             <th class="" colspan="2">Status</th>
                             <th class="text-center">Actions</th>
                             <th class="checkbox-column">
@@ -30,6 +31,7 @@
                             <tr>
                                 <td>{{$row->id}}</td>
                                 <td>{{$row->name}}</td>
+                                <td>{{$row->price}}</td>
                                 <td>
                                     @if($row->status == 'on')
                                         <span class="shadow-none badge badge-success">Active</span>
@@ -70,6 +72,7 @@
                         <tfoot>
                         <th>ID</th>
                         <th class="">Name</th>
+                        <th class="">Price</th>
                         <th class="" colspan="2">Status</th>
                         <th class="text-center">Actions</th>
                         <th class="checkbox-column">

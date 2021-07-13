@@ -11,6 +11,16 @@
             </div>
             @enderror
         </div>
+        <div class="col-md-12 mb-4">
+            @php $input = 'price'; @endphp
+            <label for="e_mail">{{ucwords($input)}}</label>
+            <input type="number" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
+            @error(str_replace(' ','',$input))
+            <div class="invalid-feedback" style="display: block;">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
     </div>
     <div class="form-row">
         <div class="col-md-12">

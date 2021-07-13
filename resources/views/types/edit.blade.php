@@ -1,8 +1,5 @@
 @extends('layout.app')
-@php
-    $types = ['super_admin','admin','manager','employee'];
-    $method = 'edit';
-@endphp
+@php $method = 'edit';@endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
@@ -19,7 +16,7 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method,$row])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method, 'type' => $row])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
@@ -29,6 +26,13 @@
             <!-- Start Row -->
             <div class="row layout-top-spacing layout-spacing">
                 <div class="col-lg-12">
+                    <div class="col-lg-12">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">
+                                <p><strong>Success : </strong>{{Session::get('success')}}</p>
+                            </div>
+                        @endif
+                    </div>
                     <div class="statbox widget box box-shadow">
                         <div class="widget-content widget-content-area">
                             <div class="table-responsive mb-4">
@@ -46,7 +50,7 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-                                                            @include($models.'.form_edit',['method' => $method])
+                                                            @include($models.'.form_edit',['method' => $method,strtolower($model) => $row])
                                                         </div>
                                                     </div>
                                                 </div>
