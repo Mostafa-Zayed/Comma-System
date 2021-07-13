@@ -51,7 +51,12 @@ class TypeRepository implements TypeInterface
 
     public function storeType($request)
     {
-        // TODO: Implement storeType() method.
+        $request->validate([
+           'name' => 'required|string|min:3|max:50',
+           'status' => 'required|string|in:on,off'
+        ]);
+        $this->model::create($request->only(['name','status']));
+        return redirect()->route($this->viewName.'.index')->with('success','Type Created Succfully');
     }
 
     public function editType($id)
