@@ -19,7 +19,7 @@ class ClientRepository implements ClientInterface
     }
     public function indexClient()
     {
-        $rows = $this->model::select('id','name','email','phone','status')->get()->take(7);
+        $rows = $this->model::select('id','name','email','phone','status')->paginate(100);
         return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
             [
                 'model' => $this->modelName,
@@ -60,11 +60,25 @@ class ClientRepository implements ClientInterface
 
     public function updateClient($request, $client)
     {
-        // TODO: Implement updateClient() method.
+
+        $request->validate([
+            'name' => 'required|string|min:3|max:70',
+            'email' => 'nullable|email|unique:clients,email',
+            'phone' => 'nullable|max:25',
+            'job' => 'nullable|max:255',
+        ]);
+
+        $data = $request->except(['_token','_method','update']);
+        if (! $request->filled('status')) {
+            $data['status'] = 'off';
+        }
+
+        $client->update($data);
+        return redirect()->route($this->viewName.'.edit',[strtolower($this->modelName) => ${strtolower($this->modelName)}]);
     }
 
-    public function destroyClient($id)
+    public function destroyClient($client)
     {
-        // TODO: Implement destroyClient() method.
+        return ($client->delete()) ? redirect()->route($this->viewName.'.index')->with('success',$this->modelName.' '.ucfirst($client->name).' : Deleted Successfully') : abort('404');
     }
 }
