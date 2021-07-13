@@ -8,6 +8,7 @@ use App\Models\Session;
 use App\Models\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class SessionRepository implements SessionInterface
 {
@@ -57,22 +58,23 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
-        //dd($request->all());
-        $data = $request->except(['_token', 'create']);
+        $data = $request->except(['_token']);
+
         if ($request->has('client_id')) {
-            $client_id = $this->validClient($request->client_id);
-            $data['client_id'] = $client_id;
+            $data['client_id'] = $this->validClient($request->client_id);
+            $data['employee_id'] = 1;
+            $data['start'] = $request->input('day')." ".$request->hour;
+            $this->model::create($data);
+            return redirect()->route('index');
+        } elseif ($request->filled('name')) {
+            $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
+            $data['start'] = $request->input('day')." ".$request->hour;
+            $data['client_id'] = $client->id;
             $data['employee_id'] = 1;
             $this->model::create($data);
             return redirect()->route('index');
         }
-        if ($request->filled('name')) {
-            $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
-            $data['client_id'] = $client->id;
-        }
-        $data['employee_id'] = 1;
-        $this->model::create($data);
-        return redirect()->route('index');
+        return abort('404');
     }
 
     public function editSession($id)
@@ -90,8 +92,53 @@ class SessionRepository implements SessionInterface
         // TODO: Implement destroySession() method.
     }
 
+    public function endSession($request, $id)
+    {
+        if ($row = Session::find($id)) {
+            $hours = $this->calculateHours($row,15);
+            $total =(float) ((int) ($hours) * 10) + (int) $request->input('product');
+            $row->product = $request->input('product');
+            $row->quantity = $hours;
+            $row->end = date('Y-m-d H:i:s');
+            $row->status = 'finished';
+            $row->total = $total;
+            $row->save();
+            session()->flash('cart',[
+                'client' => $row->client->name,
+                'hours' => $hours,
+                'products' => $row->product,
+                'total' => $total
+            ]);
+            return redirect()->route('index');
+        }
+        return abort('404');
+    }
     private function validClient(array $client_id)
     {
         return (count($client_id) > 1) ? ($client_id[0] == $client_id[1] ? $client_id[0] : false) : $client_id[0];
+    }
+
+    private function calculateHours(Session $item, int $limit)
+    {
+        $hours = 0;
+        $startTime = Carbon::parse($item->start);
+        $endTime   = Carbon::parse(date('Y-m-d H:i:s'));
+        $minutes = $endTime->diffInMinutes($startTime);
+        if ($minutes > $limit) {
+            $hours = $endTime->diffInHours($startTime);
+            $minutes = $minutes % 60 ;
+            if ($minutes > 15) {
+                $hours++;
+            }
+        } else {
+            return "0 : ".$endTime->diffInMinutes($startTime)." : M";
+        }
+        return $hours ." : H";
+    }
+
+    private function changeAmToPm(string $time)
+    {
+        $times = explode(':',$time);
+        return ((int) $times[0] + 12).":".$times[1].":".$times[2];
     }
 }

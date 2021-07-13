@@ -1,19 +1,17 @@
 @extends('layout.app')
-
 @php $method = 'create'; @endphp
 @section('title')
-    {{ucwords($model." | ".$method) }}
+    {{ucwords($model." | ".$method)}}
 @endsection
-@section('datatable')
+@section('css')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
     <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
-@section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
     <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
 @endsection
+
 @section('content')
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
@@ -80,9 +78,14 @@
         var firstUpload = new FileUploadWithPreview('myFirstImage')
     </script>
     <script>
-        var f2 = flatpickr(document.getElementById('dateTimeFlatpickr'), {
+        var f2 = flatpickr(document.getElementById('day'), {
             enableTime: true,
-            dateFormat: "Y-m-d H:i",
+            dateFormat: "Y-m-d",
+        });
+        var f2 = flatpickr(document.getElementById('hour'), {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i:m",
         });
     </script>
 

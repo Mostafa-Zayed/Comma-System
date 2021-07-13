@@ -20,6 +20,14 @@ COMMA SYSTEM
                     <div class="widget-heading">
                         <h5 class="">Heading of Section Here</h5>
                     </div>
+                    @if(Session::has('cart'))
+                    <div class="alert alert-success">
+                        <p><strong>Client Name : </strong>{{Session::get('cart')['client']}}</p>
+                        <p><strong>Hours : </strong>{{Session::get('cart')['hours']}}</p>
+                        <p><strong>Product Price : </strong>{{Session::get('cart')['products']}}</p>
+                        <p><storng>Total : </storng>{{Session::get('cart')['total']}}</p>
+                    </div>
+                    @endif
                     <div class="widget-content">
                         <div class="vistorsBrowser">
                             <div class="browser-list">
@@ -144,4 +152,23 @@ COMMA SYSTEM
         @include('includes.footer')
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('button').click(function() {
+            var btnId = $(this).attr('id');
+            var formId = $(this).next().attr('id');
+            if (btnId === formId) {
+                $(this).css('display', 'none');
+                $(this).next().css('display', 'inline');
+
+            } else {
+                alert('Error ');
+            }
+
+
+        });
+    })
+</script>
 @endsection

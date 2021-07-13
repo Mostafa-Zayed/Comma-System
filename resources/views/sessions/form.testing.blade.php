@@ -109,3 +109,29 @@
     </div>
 
 </form>
+
+
+
+<div class="col-md-4 mb-4">
+    @php $input = 'hour'; @endphp
+    <label for="e_mail">{{ucwords($input)}}</label>
+    <input id="hour" value="<?= date('h:i:m'); ?>" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date.." readonly="readonly" name="hour">
+    @error(str_replace(' ','',$input))
+    <div class="invalid-feedback" style="display: block;">
+        {{$message}}
+    </div>
+    @enderror
+</div>
+<div class="col-md-4 mb-4">
+    @php $input = 'time'; @endphp
+    <label for="e_mail">{{ucwords('time')}}</label>
+    <select class="form-control  basic" name="{{$input}}">
+        <option value="AM">AM | صباحا</option>
+        <option value="PM">PM  | مساءا</option>
+    </select>
+    @error(str_replace(' ','',$input))
+    <div class="invalid-feedback" style="display: block;">
+        {{$message}}
+    </div>
+    @enderror
+</div>

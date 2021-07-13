@@ -11,7 +11,8 @@ class MainRepository implements MainInterface
 
     public function indexMain()
     {
-        $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->paginate(10);
+        $rows = Session::select('id', 'start', 'type_id', 'client_id', 'created_at')->where('end', null)->orderBy('id','desc')->paginate();
+
         return view(
             substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
