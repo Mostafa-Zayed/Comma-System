@@ -22,7 +22,7 @@ Route::resource('clients', ClientController::class)->where(['client' => '[0-9]+'
 
 /** Route Dashboard */
 Route::get('/', [MainController::class, 'index'])->name('index');
-=======
+
 
 
 /**  Rooms Urls */
