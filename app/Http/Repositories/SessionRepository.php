@@ -5,6 +5,7 @@ namespace App\Http\Repositories;
 use App\Http\Interfaces\SessionInterface;
 use App\Models\Client;
 use App\Models\Session;
+use Illuminate\Support\Facades\Session as laravelSession;
 use App\Models\Type;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -105,15 +106,15 @@ class SessionRepository implements SessionInterface
         // TODO: Implement updateSession() method.
     }
 
-    public function destroySession($id)
+    public function destroySession($session)
     {
-        // TODO: Implement destroySession() method.
+        return ($session->delete()) ? redirect()->route($this->viewName.'.index')->with('success',$this->modelName.' '.ucfirst($session->name).' : Deleted Successfully') : abort('404');
     }
 
     public function endSession($request, $session)
     {
         if ($session) {
-            $this->price = \Illuminate\Support\Facades\Session::get('client_'.$session->id);
+            $this->price = laravelSession::has('client_'.$session->id) ? laravelSession::get('client_'.$session->id) : $this->getTypePrice($session->type->id);
             $request->session()->forget('client_'.$session->id);
             $hours = $this->calculateHours($session,15);
             $total = (float) ((int) ($hours) *  $this->getPrice() + (float) $request->input('product'));
@@ -166,5 +167,10 @@ class SessionRepository implements SessionInterface
     private function getPrice()
     {
         return ! empty($this->price) ? (int) $this->price : 0;
+    }
+
+    private function getTypePrice(int $id)
+    {
+        return Type::select('price')->where('id','=',$id)->first()['price'];
     }
 }
