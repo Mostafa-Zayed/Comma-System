@@ -38,3 +38,4 @@ Route::resource('sessions', SessionController::class)->where(['type' => '[0-9]+'
 Route::post('sessions/{session}/end', [SessionController::class, 'end'])->name('sessions.end');
 
 
+Route::get('/test',[SessionController::class,'test']);
