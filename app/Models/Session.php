@@ -29,5 +29,5 @@ class Session extends Model
         return $this->belongsTo('\App\Models\Client', 'client_id', 'id');
     }
 
-    protected $dates = ['created_at', 'updated_at','start'];
+    protected $dates = ['created_at', 'updated_at','start','end'];
 }

@@ -1,8 +1,5 @@
 @extends('layout.app')
-@php
-    $types = ['super_admin','admin','manager','employee'];
-    $method = 'edit';
-@endphp
+@php $method = 'edit'; @endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection
@@ -45,7 +42,7 @@
                                                 </div>
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-12 mx-auto">
+                                                        <div class="col-lg-12 col-12 mx-auto">
                                                             @include($models.'.form_edit',['method' => $method])
                                                         </div>
                                                     </div>
