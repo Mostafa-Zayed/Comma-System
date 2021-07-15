@@ -4,6 +4,12 @@
     {{ucwords($model." | ".$method) }}
 @endsection
 @section('datatable')
+<<<<<<< HEAD
+        <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+        <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
+=======
 
     {{--    <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />--}}
     {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">--}}
@@ -15,6 +21,7 @@
 {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">--}}
 {{--    <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />--}}
 
+>>>>>>> bf3fedc302fe4e102757998e78df889d7ebedb53
 @endsection
 
 @section('content')

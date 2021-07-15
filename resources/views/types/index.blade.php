@@ -25,6 +25,13 @@
             <!-- Start Row -->
                 <div class="row layout-top-spacing layout-spacing">
                     <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            @if(Session::has('success'))
+                                <div class="alert alert-success">
+                                    <p><strong>Success : </strong>{{Session::get('success')}}</p>
+                                </div>
+                            @endif
+                        </div>
                         <div class="statbox widget box box-shadow">
                             <div class="widget-content widget-content-area">
                                 <div class="table-responsive mb-4">

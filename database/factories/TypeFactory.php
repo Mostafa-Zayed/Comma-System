@@ -25,6 +25,7 @@ class TypeFactory extends Factory
             unset($this->types[$key]);
             return [
                 'name' => $type,
+               // 'price' => 100,
                 'status' => $this->faker->randomElement(['on','off'])
             ];
 
