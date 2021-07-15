@@ -29,7 +29,7 @@ class SessionRepository implements SessionInterface
             $query->select('name', 'id');
         },'client' => function($q) {
             $q->select('name','id');
-        }])->select('id', 'start', 'end', 'created_at', 'type_id','client_id')->paginate(10);
+        }])->select('id', 'start', 'end', 'created_at', 'type_id','client_id','product','total')->paginate(10);
         return view(
             $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
@@ -62,31 +62,42 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
-//        dd($request->all());
-        $this->data = $request->except(['_token']);
-        $this->price = Type::select('price')->where('id',$request->type_id)->get()->toArray();
+        $this->data = $request->except(['_token','create']);
+        $this->price = (Type::select('price')->where('id',$request->type_id)->get()->toArray())[0]['price'];
         if ($request->has('client_id')) {
             $this->data['client_id'] = $this->validClient($request->client_id);
             $this->data['employee_id'] = 1;
             $this->data['start'] = $request->input('day')." ".$request->hour;
+            unset($this->data['day'],$this->data['hour'],$this->data['name']);
             $session = $this->model::create($this->data);
-            \Illuminate\Support\Facades\Session::put('client.'.$session->id,$this->price);
+            \Illuminate\Support\Facades\Session::put('client_'.$session->id,$this->price);
             return redirect()->route('index');
         } elseif ($request->filled('name')) {
-            $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
             $this->data['start'] = $request->input('day')." ".$request->hour;
+            unset($this->data['day'],$this->data['hour']);
+            $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
             $this->data['client_id'] = $client->id;
             $this->data['employee_id'] = 1;
             $session = $this->model::create($this->data);
-            \Illuminate\Support\Facades\Session::put('client.'.$session->id,$this->price);
+            \Illuminate\Support\Facades\Session::put('client_'.$session->id,$this->price);
             return redirect()->route('index');
         }
         return abort('404');
     }
 
-    public function editSession($id)
+    public function editSession($session)
     {
-        // TODO: Implement editSession() method.
+        $types = Type::select('id','name')->get();
+        $session = $session::with(['type' => function($query) {
+            $query->select('id','name','price')->get();
+        }])->find($session->id);
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName,
+                'row' => $session,
+                'types' => $types
+            ]);
     }
 
     public function updateSession($request, $id)
@@ -99,23 +110,23 @@ class SessionRepository implements SessionInterface
         // TODO: Implement destroySession() method.
     }
 
-    public function endSession($request, $id)
+    public function endSession($request, $session)
     {
-        if ($row = Session::find($id)) {
-            $this->price = \Illuminate\Support\Facades\Session::get('client.'.$row->id);
-            $request->session()->forget('client'.$row->id);
-            $hours = $this->calculateHours($row,15);
-            $total =(int) ($hours) *  $this->getPrice()+ (int) $request->input('product');
-            $row->product = $request->input('product');
-            $row->quantity = $hours;
-            $row->end = date('Y-m-d H:i:s');
-            $row->status = 'finished';
-            $row->total = $total;
-            $row->save();
+        if ($session) {
+            $this->price = \Illuminate\Support\Facades\Session::get('client_'.$session->id);
+            $request->session()->forget('client_'.$session->id);
+            $hours = $this->calculateHours($session,15);
+            $total = (float) ((int) ($hours) *  $this->getPrice() + (float) $request->input('product'));
+            $session->product = $request->input('product');
+            $session->quantity = $hours;
+            $session->end = date('Y-m-d H:i:s');
+            $session->status = 'finished';
+            $session->total = $total;
+            $session->save();
             session()->flash('cart',[
-                'client' => $row->client->name,
+                'client' => $session->client->name,
                 'hours' => $hours,
-                'products' => $row->product,
+                'products' => $session->product,
                 'total' => $total
             ]);
 
@@ -154,6 +165,6 @@ class SessionRepository implements SessionInterface
 
     private function getPrice()
     {
-        return ! empty($this->price[0]['price']) ? $this->price[0]['price'] : 0;
+        return ! empty($this->price) ? (int) $this->price : 0;
     }
 }

@@ -17,6 +17,8 @@
                             <th class="" colspan="2">Start</th>
                             <th>Department</th>
                             <th class="">End</th>
+                            <th>Products</th>
+                            <th>Total Price</th>
                             <th>Client Name</th>
                             <th class="text-center">Actions</th>
 {{--                            <th class="checkbox-column">--}}
@@ -43,6 +45,8 @@
                                 @if(! empty($row->end))
                                     <td><button class="btn btn-danger">{{$row->end->diffForHumans()}}</button></td>
                                 @endif
+                                <td>{{$row->product}}</td>
+                                <td>{{$row->total}}</td>
                                 <td>{{ucfirst($row->client->name)}}</td>
                                 <td class="text-center">
                                     <ul class="table-controls">
