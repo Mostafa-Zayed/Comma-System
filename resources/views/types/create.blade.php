@@ -1,8 +1,5 @@
 @extends('layout.app')
-@php
-    $types = ['super_admin','admin','manager','employee'];
-    $method = 'create';
-@endphp
+@php $method = 'create';@endphp
 @section('title')
     {{ucwords($model." | ".$method) }}
 @endsection

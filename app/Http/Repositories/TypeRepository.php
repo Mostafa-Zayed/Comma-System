@@ -19,7 +19,7 @@ class TypeRepository implements TypeInterface
     }
     public function indexType()
     {
-        $rows = $this->model::select('id','name','status')->get();
+        $rows = $this->model::select('id','name','price','status')->get();
         return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
             [
                 'model' => $this->modelName,
@@ -51,21 +51,39 @@ class TypeRepository implements TypeInterface
 
     public function storeType($request)
     {
-        // TODO: Implement storeType() method.
+        $request->validate([
+           'name' => 'required|string|min:3|max:50',
+           'price' => 'required',
+           'status' => 'required|string|in:on,off'
+        ]);
+        $this->model::create($request->only(['name','status']));
+        return redirect()->route($this->viewName.'.index')->with('success','Type Created Succfully');
     }
 
-    public function editType($id)
+    public function editType($type)
     {
-        // TODO: Implement editType() method.
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName,
+                'row' => $type
+            ]);
     }
 
-    public function updateType($request, $id)
+    public function updateType($request, $type)
     {
-        // TODO: Implement updateType() method.
+        $request->validate([
+            'name' => 'required|string|min:3|max:50',
+            'price' => 'required',
+            'status' => 'required|string|in:on,off'
+        ]);
+
+        $type->update($request->except(['_token','_method','update']));
+        return redirect()->route($this->viewName.'.edit',[strtolower($this->modelName) => ${strtolower($this->modelName)}])->with('success',$this->modelName.' '.ucfirst($type->name).' : Update Successfully');
     }
 
-    public function destroyType($id)
+    public function destroyType($type)
     {
-        // TODO: Implement destroyType() method.
+        return ($type->delete()) ? redirect()->route($this->viewName.'.index')->with('success',$this->modelName.' '.ucfirst($type->name).' : Deleted Successfully') : abort('404');
     }
 }

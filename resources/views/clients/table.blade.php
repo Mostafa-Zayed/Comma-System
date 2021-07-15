@@ -13,6 +13,7 @@
                     @if(! empty($rows) && $rows->count() > 0 )
                         <thead>
                         <tr>
+                            <th>#</th>
                             <th class="">Name</th>
                             <th class="">Email</th>
                             <th class="">Phone</th>
@@ -27,8 +28,10 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @php $counter = 0; @endphp
                         @foreach($rows as $row)
                             <tr>
+                                <td>{{++$counter}}</td>
                                 <td>
                                     <p class="mb-0">{{ucwords($row->name)}}</p>
                                 </td>

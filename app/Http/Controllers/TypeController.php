@@ -53,9 +53,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Type $type)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($type);
     }
 
     /**
@@ -64,9 +64,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Type $type)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($type);
     }
 
     /**
@@ -76,9 +76,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$type);
     }
 
     /**
@@ -87,9 +87,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($type);
     }
 
     private function getModuleName()
