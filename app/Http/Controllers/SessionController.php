@@ -61,7 +61,7 @@ class SessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $session
      * @return \Illuminate\Http\Response
      */
     public function edit(Session $session)
@@ -73,7 +73,7 @@ class SessionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $session
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Session $session)
@@ -84,7 +84,7 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
     public function destroy(Session $session)
@@ -97,6 +97,7 @@ class SessionController extends Controller
     {
         return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $session);
     }
+
     private function getModuleName()
     {
         $data = explode('\\', __CLASS__);
