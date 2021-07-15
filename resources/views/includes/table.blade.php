@@ -26,7 +26,7 @@
                         @foreach($rows as $row)
                         <tr>
                             <td>{{$counter++}}</td>
-                            <td>{{$row->start}}</td>
+                            <td>{{$row->start->format('d/m/Y h:i')}}</td>
                             <td>{{$row->start->diffForHumans()}}</td>
                             <td>{{$row->type->name}}</td>
                             @empty($row->end)
