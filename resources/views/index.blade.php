@@ -25,7 +25,9 @@ COMMA SYSTEM
                         <p><strong>Client Name : </strong>{{Session::get('cart')['client']}}</p>
                         <p><strong>Hours : </strong>{{Session::get('cart')['hours']}}</p>
                         <p><strong>Product Price : </strong>{{Session::get('cart')['products']}}</p>
-                        <p><storng>Total : </storng>{{Session::get('cart')['total']}}</p>
+                        <p>
+                            <storng>Total : </storng>{{Session::get('cart')['total']}}
+                        </p>
                     </div>
                     @endif
                     <div class="widget-content">
@@ -169,6 +171,14 @@ COMMA SYSTEM
 
 
         });
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $('#logout-link').click(function(e) {
+            e.preventDefault();
+            $('#logout-form').submit();
+        })
     })
 </script>
 @endsection

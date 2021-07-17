@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'passwords' => 'users',
+    'passwords' => 'employees',
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => "/",
 
     /*
     |--------------------------------------------------------------------------
@@ -133,13 +133,13 @@ return [
 
     'features' => [
         Features::registration(),
-//        Features::resetPasswords(),
-//        // Features::emailVerification(),
-//        Features::updateProfileInformation(),
-//        Features::updatePasswords(),
-//        Features::twoFactorAuthentication([
-//            'confirmPassword' => true,
-//        ]),
+        //        Features::resetPasswords(),
+        //        // Features::emailVerification(),
+        //        Features::updateProfileInformation(),
+        //        Features::updatePasswords(),
+        //        Features::twoFactorAuthentication([
+        //            'confirmPassword' => true,
+        //        ]),
     ],
 
 ];
