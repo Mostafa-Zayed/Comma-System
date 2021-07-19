@@ -28,9 +28,9 @@ class SessionRepository implements SessionInterface
     {
         $rows = $this->model::with(['type' => function ($query) {
             $query->select('name', 'id');
-        },'client' => function($q) {
-            $q->select('name','id');
-        }])->select('id', 'start', 'end', 'created_at', 'type_id','client_id','product','total')->paginate(10);
+        }, 'client' => function ($q) {
+            $q->select('name', 'id');
+        }])->select('id', 'start', 'end', 'created_at', 'type_id', 'client_id', 'product', 'total')->paginate(10);
         return view(
             $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
@@ -63,24 +63,24 @@ class SessionRepository implements SessionInterface
 
     public function storeSession($request)
     {
-        $this->data = $request->except(['_token','create']);
-        $this->price = (Type::select('price')->where('id',$request->type_id)->get()->toArray())[0]['price'];
+        $this->data = $request->except(['_token', 'create']);
+        $this->price = (Type::select('price')->where('id', $request->type_id)->get()->toArray())[0]['price'];
         if ($request->has('client_id')) {
             $this->data['client_id'] = $this->validClient($request->client_id);
             $this->data['employee_id'] = 1;
-            $this->data['start'] = $request->input('day')." ".$request->hour;
-            unset($this->data['day'],$this->data['hour'],$this->data['name']);
+            $this->data['start'] = $request->input('day') . " " . $request->hour;
+            unset($this->data['day'], $this->data['hour'], $this->data['name']);
             $session = $this->model::create($this->data);
-            \Illuminate\Support\Facades\Session::put('client_'.$session->id,$this->price);
+            \Illuminate\Support\Facades\Session::put('client_' . $session->id, $this->price);
             return redirect()->route('index');
         } elseif ($request->filled('name')) {
-            $this->data['start'] = $request->input('day')." ".$request->hour;
-            unset($this->data['day'],$this->data['hour']);
+            $this->data['start'] = $request->input('day') . " " . $request->hour;
+            unset($this->data['day'], $this->data['hour']);
             $client = Client::create(['name' => $request->name, 'ssn' => str_shuffle(rand())]);
             $this->data['client_id'] = $client->id;
             $this->data['employee_id'] = 1;
             $session = $this->model::create($this->data);
-            \Illuminate\Support\Facades\Session::put('client_'.$session->id,$this->price);
+            \Illuminate\Support\Facades\Session::put('client_' . $session->id, $this->price);
             return redirect()->route('index');
         }
         return abort('404');
@@ -88,17 +88,19 @@ class SessionRepository implements SessionInterface
 
     public function editSession($session)
     {
-        $types = Type::select('id','name')->get();
-        $session = $session::with(['type' => function($query) {
-            $query->select('id','name','price')->get();
+        $types = Type::select('id', 'name')->get();
+        $session = $session::with(['type' => function ($query) {
+            $query->select('id', 'name', 'price')->get();
         }])->find($session->id);
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'row' => $session,
                 'types' => $types
-            ]);
+            ]
+        );
     }
 
     public function updateSession($request, $id)
@@ -108,15 +110,15 @@ class SessionRepository implements SessionInterface
 
     public function destroySession($session)
     {
-        return ($session->delete()) ? redirect()->route($this->viewName.'.index')->with('success',$this->modelName.' '.ucfirst($session->name).' : Deleted Successfully') : abort('404');
+        return ($session->delete()) ? redirect()->route($this->viewName . '.index')->with('success', $this->modelName . ' ' . ucfirst($session->name) . ' : Deleted Successfully') : abort('404');
     }
 
     public function endSession($request, $session)
     {
         if ($session) {
-            $this->price = laravelSession::has('client_'.$session->id) ? laravelSession::get('client_'.$session->id) : $this->getTypePrice($session->type->id);
-            $request->session()->forget('client_'.$session->id);
-            $hours = $this->calculateHours($session,15);
+            $this->price = laravelSession::has('client_' . $session->id) ? laravelSession::get('client_' . $session->id) : $this->getTypePrice($session->type->id);
+            $request->session()->forget('client_' . $session->id);
+            $hours = $this->calculateHours($session, 15);
             $total = (float) ((int) ($hours) *  $this->getPrice() + (float) $request->input('product'));
             $session->product = $request->input('product');
             $session->quantity = $hours;
@@ -124,7 +126,7 @@ class SessionRepository implements SessionInterface
             $session->status = 'finished';
             $session->total = $total;
             $session->save();
-            session()->flash('cart',[
+            session()->flash('cart', [
                 'client' => $session->client->name,
                 'hours' => $hours,
                 'products' => $session->product,
@@ -148,29 +150,29 @@ class SessionRepository implements SessionInterface
         $minutes = $endTime->diffInMinutes($startTime);
         if ($minutes > $limit) {
             $hours = $endTime->diffInHours($startTime);
-            $minutes = $minutes % 60 ;
+            $minutes = $minutes % 60;
             if ($minutes > 15) {
                 $hours++;
             }
         } else {
-            return "0 : ".$endTime->diffInMinutes($startTime)." : M";
+            return "0 : " . $endTime->diffInMinutes($startTime) . " : M";
         }
-        return $hours ." : H";
+        return $hours . " : H";
     }
 
     private function changeAmToPm(string $time)
     {
-        $times = explode(':',$time);
-        return ((int) $times[0] + 12).":".$times[1].":".$times[2];
+        $times = explode(':', $time);
+        return ((int) $times[0] + 12) . ":" . $times[1] . ":" . $times[2];
     }
 
     private function getPrice()
     {
-        return ! empty($this->price) ? (int) $this->price : 0;
+        return !empty($this->price) ? (int) $this->price : 0;
     }
 
     private function getTypePrice(int $id)
     {
-        return Type::select('price')->where('id','=',$id)->first()['price'];
+        return Type::select('price')->where('id', '=', $id)->first()['price'];
     }
 }
