@@ -50,8 +50,6 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{asset('plugins/apex/apexcharts.min.js')}}"></script>
     <script src="{{asset('assets/js/dashboard/dash_2.js')}}"></script>
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    @yield('script')
     <script>
         $(document).ready(function() {
             $('#logout-link').click(function(e) {
@@ -60,7 +58,8 @@
             })
         })
     </script>
-
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    @yield('script')
 </body>
 
 </html>

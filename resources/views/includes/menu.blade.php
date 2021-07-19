@@ -133,6 +133,7 @@
                     </svg>
                 </a>
             </li>
+            @guest
             <li class="menu single-menu">
                 <a href="{{route('login')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -148,6 +149,7 @@
                     </svg>
                 </a>
             </li>
+            @endguest
         </ul>
     </nav>
 </div>

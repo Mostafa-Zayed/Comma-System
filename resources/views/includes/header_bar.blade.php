@@ -1,5 +1,5 @@
 <div class="header-container">
-    <form id="logout-form" action="{{url('logout')}}" method="post">
+    <form id="logout-form" action="{{url('logout')}}" method="post" style="display: none;">
         @csrf
     </form>
     <header class="header navbar navbar-expand-sm">
@@ -38,7 +38,7 @@
                 <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="user-profile-dropdown">
                     <div class="">
                         <div class="dropdown-item">
-                            <a id="logout-link" href="" onclick="document.getElementById('#logout-form').submit()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                            <a id="logout-link" onclick="document.getElementById('#logout-form').submit()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>Logout</a>
