@@ -53,54 +53,61 @@ class SessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Session $session)
     {
-        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($session);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Session $session)
     {
-        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($session);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $session
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Session $session)
     {
-        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $session);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Session $session)
     {
-        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($session);
     }
 
-    // End Method 
-    public function end(Request $request, $id)
+    // End Method
+    public function end(Request $request, Session $session)
     {
-        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $id);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $session);
     }
+
     private function getModuleName()
     {
         $data = explode('\\', __CLASS__);
         $controllerName = end($data);
         return substr($controllerName, 0, strpos($controllerName, 'Controller'));
+    }
+
+    public function test()
+    {
+        \Illuminate\Support\Facades\Session::put('cl_ses','ahmed');
+        dd(\Illuminate\Support\Facades\Session::all());
     }
 }
