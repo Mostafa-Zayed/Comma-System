@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class Employee extends Authenticatable
 {
     use HasFactory;
-  
+
     protected $fillable = ['name', 'email', 'password', 'type', 'active', 'ssn', 'image'];
 
     // RelationShip Session
