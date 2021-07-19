@@ -11,6 +11,8 @@ class MainController extends Controller
     private $interface;
     private $modelName;
 
+    /** hi from room-module */
+
     public function __construct(MainInterface $mainInterface)
     {
         $this->interface = $mainInterface;
@@ -22,6 +24,11 @@ class MainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+    }
+
+    public function showSession()
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
     }

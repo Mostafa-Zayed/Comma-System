@@ -12,6 +12,7 @@ class Employee extends Authenticatable
     use HasFactory;
     protected $fillable = ['name', 'email', 'password', 'type', 'active', 'ssn', 'image'];
 
+
     // RelationShip Session
     public function sessions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

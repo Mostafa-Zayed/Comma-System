@@ -31,19 +31,24 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\ClientRepository'
         );
 
-//        // Category Module
-//        $this->app->bind(
-//            'App\Http\Interfaces\CategoryInterface',
-//            'App\Http\Repositories\CategoryRepository'
-//        );
-
-
-        /* Module
+        // Type Module
         $this->app->bind(
-            'App\Http\Interfaces\[Interface Name]',
-            'App\Http\Repositories\[Repository Name]'
+            'App\Http\Interfaces\TypeInterface',
+            'App\Http\Repositories\TypeRepository'
         );
-        */
+
+
+        // Room Module
+        $this->app->bind(
+            'App\Http\Interfaces\RoomInterface',
+            'App\Http\Repositories\RoomRepository'
+        );
+
+        // Session Module
+        $this->app->bind(
+            'App\Http\Interfaces\SessionInterface',
+            'App\Http\Repositories\SessionRepository'
+        );
     }
 
     /**
