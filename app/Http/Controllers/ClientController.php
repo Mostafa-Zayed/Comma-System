@@ -24,7 +24,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}();
     }
 
     /**
@@ -34,7 +34,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}();
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}();
     }
 
     /**
@@ -45,7 +45,7 @@ class ClientController extends Controller
      */
     public function store(Store $request)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request);
     }
 
     /**
@@ -56,7 +56,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($client);
     }
 
     /**
@@ -67,7 +67,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($client);
     }
 
     /**
@@ -79,7 +79,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$client);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($request, $client);
     }
 
     /**
@@ -89,15 +89,14 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)
-
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
+        return $this->interface->{__FUNCTION__ . ucfirst($this->modelName)}($client);
     }
 
     private function getModuleName()
     {
-        $data = explode('\\',__CLASS__);
+        $data = explode('\\', __CLASS__);
         $controllerName = end($data);
-        return substr($controllerName,0,strpos($controllerName,'Controller'));
+        return substr($controllerName, 0, strpos($controllerName, 'Controller'));
     }
 }
