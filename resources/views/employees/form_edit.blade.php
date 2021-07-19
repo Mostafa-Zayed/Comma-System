@@ -3,19 +3,7 @@
     {{method_field('PUT')}}
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'first name'; @endphp
-            <label for="e_mail">{{ucwords($input)}}</label>
-            <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
-            @error(str_replace(' ','',$input))
-            <div class="invalid-feedback" style="display: block;">
-                {{$message}}
-            </div>
-            @enderror
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-12 mb-4">
-            @php $input = 'last name'; @endphp
+            @php $input = 'name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
             <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset">
             @error(str_replace(' ','',$input))
@@ -52,18 +40,18 @@
     @php $input = 'image'; @endphp
     <div class="custom-file-container" data-upload-id="myFirstImage">
         <label>Upload (Single File) <a href="" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-        <label class="custom-file-container__custom-file" >
+        <label class="custom-file-container__custom-file">
             <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" name="{{$input}}">
-            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+            <!-- <input type="hidden" name="MAX_FILE_SIZE" value="10485760" /> -->
             <span class="custom-file-container__custom-file__custom-file-control"></span>
         </label>
         <div class="custom-file-container__image-preview"></div>
         @isset($row)
-            @if(! empty($row->image))
-                <div class="custom-file-container__image-preview">
-                    <img src="{{URL::to('uploads/employees/'.$row->image)}}" width="70%" height="100%">
-                </div>
-            @endif
+        @if(! empty($row->image))
+        <div class="custom-file-container__image-preview">
+            <img src="{{URL::to('uploads/employees/'.$row->image)}}" width="70%" height="100%">
+        </div>
+        @endif
         @endisset
     </div>
     <div class="form-row">
@@ -74,7 +62,7 @@
                 <select class="custom-select" name="{{$input}}">
                     <option value="">Open this select menu</option>
                     @foreach($types as $type)
-                        <option value="{{$type}}" @if(isset($row) && $row->{str_replace(' ','',$input)} === $type) selected @endif>{{ucwords(str_replace('_',' ',$type))}}</option>
+                    <option value="{{$type}}" @if(isset($row) && $row->{str_replace(' ','',$input)} === $type) selected @endif>{{ucwords(str_replace('_',' ',$type))}}</option>
                     @endforeach
                 </select>
                 <div class="valid-feedback">Example valid custom select feedback</div>
