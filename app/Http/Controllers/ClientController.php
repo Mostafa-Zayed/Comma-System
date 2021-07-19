@@ -89,7 +89,6 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)
-
     {
         return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($client);
     }

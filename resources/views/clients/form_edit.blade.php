@@ -62,9 +62,6 @@
             </div>
         </div>
     </div>
-=======
-
->>>>>>> bf3fedc302fe4e102757998e78df889d7ebedb53
     {{--    <div class="form-row">--}}
     {{--        <div class="col-md-12">--}}
     {{--            @php $input = 'status'; @endphp--}}

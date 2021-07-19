@@ -2,7 +2,7 @@
     @csrf
     <div class="form-row">
         <div class="col-md-12 mb-4">
-            @php $input = 'first name'; @endphp
+            @php $input = 'name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
             <input type="text" class="form-control" id="{{str_replace(' ','',$input)}}" name="{{str_replace(' ','',$input)}}" value="@isset($row->{str_replace(' ','',$input)}) {{ $row->{str_replace(' ','',$input)} }}@endisset {{old(str_replace(' ','',$input))}}">
             @error(str_replace(' ','',$input))
@@ -12,7 +12,7 @@
             @enderror
         </div>
     </div>
-    <div class="form-row">
+    <!-- <div class="form-row">
         <div class="col-md-12 mb-4">
             @php $input = 'last name'; @endphp
             <label for="e_mail">{{ucwords($input)}}</label>
@@ -23,7 +23,7 @@
             </div>
             @enderror
         </div>
-    </div>
+    </div> -->
     <div class="form-row">
         <div class="col-md-12 mb-4">
             @php $input = 'email'; @endphp
@@ -51,7 +51,7 @@
     @php $input = 'image'; @endphp
     <div class="custom-file-container" data-upload-id="myFirstImage">
         <label>Upload (Single File) <a href="" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-        <label class="custom-file-container__custom-file" >
+        <label class="custom-file-container__custom-file">
             <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" name="{{$input}}">
             <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
             <span class="custom-file-container__custom-file__custom-file-control"></span>
@@ -66,7 +66,7 @@
                 <select class="custom-select" name="{{$input}}">
                     <option value="">Open this select menu</option>
                     @foreach($types as $type)
-                        <option value="{{$type}}" @if(isset($row) && $row->{str_replace(' ','',$input)} === $type) selected @endif>{{ucwords(str_replace('_',' ',$type))}}</option>
+                    <option value="{{$type}}" @if(isset($row) && $row->{str_replace(' ','',$input)} === $type) selected @endif>{{ucwords(str_replace('_',' ',$type))}}</option>
                     @endforeach
                 </select>
                 <div class="valid-feedback">Example valid custom select feedback</div>

@@ -16,14 +16,15 @@
                             <th>ID</th>
                             <th class="">Name</th>
                             <th class="">Price</th>
-                            <th class="" colspan="2">Status</th>
+{{--                            <th class="" colspan="2">Status</th>--}}
+                            <th class="">Status</th>
                             <th class="text-center">Actions</th>
-                            <th class="checkbox-column">
-                                <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                    <span class="new-control-indicator"></span>
-                                </label>
-                            </th>
+{{--                            <th class="checkbox-column">--}}
+{{--                                <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">--}}
+{{--                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">--}}
+{{--                                    <span class="new-control-indicator"></span>--}}
+{{--                                </label>--}}
+{{--                            </th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -39,12 +40,12 @@
                                         <span class="shadow-none badge badge-danger">Not Active</span>
                                     @endif
                                 </td>
-                                <td class="checkbox-column text-center">
-                                    <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input" @if($row->status === 'on') checked @endisset>
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </td>
+{{--                                <td class="checkbox-column text-center">--}}
+{{--                                    <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">--}}
+{{--                                        <input type="checkbox" class="new-control-input" @if($row->status === 'on') checked @endisset>--}}
+{{--                                        <span class="new-control-indicator"></span>--}}
+{{--                                    </label>--}}
+{{--                                </td>--}}
                                 <td class="text-center">
                                     <ul class="table-controls">
                                         <li><a href="{{route($models.'.show',[strtolower($model) => $row])}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Show"><i class="far fa-eye text-primary"></i></a> </li>
@@ -60,12 +61,12 @@
                                         </li>
                                     </ul>
                                 </td>
-                                <td class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todo-4">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </td>
+{{--                                <td class="checkbox-column">--}}
+{{--                                    <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">--}}
+{{--                                        <input type="checkbox" class="new-control-input todochkbox" id="todo-4">--}}
+{{--                                        <span class="new-control-indicator"></span>--}}
+{{--                                    </label>--}}
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>
@@ -73,11 +74,12 @@
                         <th>ID</th>
                         <th class="">Name</th>
                         <th class="">Price</th>
-                        <th class="" colspan="2">Status</th>
+{{--                        <th class="" colspan="2">Status</th>--}}
+                        <th class="">Status</th>
                         <th class="text-center">Actions</th>
-                        <th class="checkbox-column">
-                            <button class="btn btn-danger">Delete</button>
-                        </th>
+{{--                        <th class="checkbox-column">--}}
+{{--                            <button class="btn btn-danger">Delete</button>--}}
+{{--                        </th>--}}
                         </tfoot>
                     @endif
                 </table>
