@@ -51,11 +51,12 @@ class MemberTypeRepository implements MemberTypeInterface
         $request->validate([
             'name' => 'required|string|min:3|max:50',
             'price' => 'required',
-            'status' => 'required|string|in:on,off',
-            'employee_id' => Auth::user()->id
+            'status' => 'required|string|in:on,off'
         ]);
-        $this->model::create($request->only(['name','status']));
-        return redirect()->route($this->viewName.'.index')->with('success','Type Created Successfully');
+        $data = $request->except(['_token','create']);
+        $data['employee_id'] = Auth::user()->id;
+        $this->model::create($data);
+        return redirect()->route('member-types.index')->with('success','Type Created Successfully');
     }
 
     public function editMemberType($id)
