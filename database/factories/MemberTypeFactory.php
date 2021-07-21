@@ -27,6 +27,7 @@ class MemberTypeFactory extends Factory
         return [
             'name' => $types[$counter++],
             'status' => $status[array_rand($status)],
+            'price' => rand(0,1000),
             'employee_id' => \App\Models\Employee::select('id')->get()->random()->id
         ];
     }

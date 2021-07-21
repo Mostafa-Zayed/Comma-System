@@ -4,6 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Http\Interfaces\MemberTypeInterface;
 use App\Models\MemberType;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MemberTypeRepository implements MemberTypeInterface
@@ -36,12 +37,25 @@ class MemberTypeRepository implements MemberTypeInterface
 
     public function createMemberType()
     {
-        // TODO: Implement createMemberType() method.
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName
+            ]
+        );
     }
 
     public function storeMemberType($request)
     {
-        // TODO: Implement storeMemberType() method.
+        $request->validate([
+            'name' => 'required|string|min:3|max:50',
+            'price' => 'required',
+            'status' => 'required|string|in:on,off',
+            'employee_id' => Auth::user()->id
+        ]);
+        $this->model::create($request->only(['name','status']));
+        return redirect()->route($this->viewName.'.index')->with('success','Type Created Successfully');
     }
 
     public function editMemberType($id)

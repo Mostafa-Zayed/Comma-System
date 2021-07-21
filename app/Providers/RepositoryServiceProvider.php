@@ -57,12 +57,12 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
 
-        /* Module
+        // Member Module
         $this->app->bind(
-            'App\Http\Interfaces\[Interface Name]',
-            'App\Http\Repositories\[Repository Name]'
+            'App\Http\Interfaces\MemberInterface',
+            'App\Http\Repositories\MemberRepository'
         );
-        */
+
     }
 
     /**
