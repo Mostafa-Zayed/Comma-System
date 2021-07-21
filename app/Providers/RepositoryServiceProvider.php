@@ -49,6 +49,20 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\SessionInterface',
             'App\Http\Repositories\SessionRepository'
         );
+
+        // Member Type Module
+        $this->app->bind(
+            'App\Http\Interfaces\MemberTypeInterface',
+            'App\Http\Repositories\MemberTypeRepository'
+        );
+
+
+        // Member Module
+        $this->app->bind(
+            'App\Http\Interfaces\MemberInterface',
+            'App\Http\Repositories\MemberRepository'
+        );
+
     }
 
     /**

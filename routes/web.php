@@ -8,7 +8,8 @@ use App\Http\Controllers\MainController;
 use  App\Http\Controllers\RoomController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SessionController;
-
+use App\Http\Controllers\MemberTypeController;
+use App\Http\Controllers\MemberController;
 
 /** Route Dashboard */
 Route::get('/', [MainController::class, 'index'])->name('index');
@@ -35,6 +36,12 @@ Route::resource('sessions', SessionController::class)->where(['type' => '[0-9]+'
 
 // End Session
 Route::post('sessions/{session}/end', [SessionController::class, 'end'])->name('sessions.end')->middleware('auth');
+
+/** Member Types Urls */
+Route::resource('member-types',MemberTypeController::class);
+
+/** Members Url */
+Route::resource('members',MemberController::class);
 
 
 Route::get('/test', [SessionController::class, 'test']);

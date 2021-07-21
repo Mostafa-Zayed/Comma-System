@@ -23,6 +23,7 @@ class CreateSessionsTable extends Migration
             $table->enum('status', ['finished', 'not_start', 'progress'])->default('not_start');
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('member_id')->nullable();
             $table->unsignedBigInteger('client_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +32,7 @@ class CreateSessionsTable extends Migration
             $table->foreign('employee_id')->references('id')->on('employees')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('type_id')->references('id')->on('types')->onUpdate('cascade')->onDelete('no action');
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('member_id')->references('id')->on('members');
         });
     }
 

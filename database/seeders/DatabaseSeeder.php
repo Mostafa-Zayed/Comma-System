@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSeeder::class);
         \App\Models\Shared::factory(1)->create();
         \App\Models\Session::factory(10)->create();
+        $this->call(MemberTypeSeeder::class);
+        $this->call(MemberSeeder::class);
+
     }
 }
