@@ -13,7 +13,7 @@ class TypeFactory extends Factory
      * @var string
      */
     protected $model = Type::class;
-    protected $types = ['funny','shared','reservation','package'];
+    protected $types = ['funny', 'shared', 'reservation', 'package'];
     /**
      * Define the model's default state.
      *
@@ -21,14 +21,14 @@ class TypeFactory extends Factory
      */
     public function definition()
     {
-        foreach ($this->types as $key => $type) {
-            unset($this->types[$key]);
-            return [
-                'name' => $type,
-               // 'price' => 100,
-                'status' => $this->faker->randomElement(['on','off'])
-            ];
+        // foreach ($this->types as $key => $type) {
+        //     unset($this->types[$key]);
+        //     return [
+        //         'name' => $type,
+        //        'price' => ,
+        //         'status' => $this->faker->randomElement(['on','off'])
+        //     ];
 
-        }
+        // }
     }
 }

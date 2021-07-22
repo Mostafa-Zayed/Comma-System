@@ -15,14 +15,15 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname',50)->nullable();
-            $table->string('lastname',50)->nullable();
-            $table->string('email',100)->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->unsignedBigInteger('ssn')->unique();
-            $table->string('password',100);
             $table->string('image')->nullable();
-            $table->enum('type',['super_admin','admin','employee','manager'])->default('employee');
-            $table->enum('active',['on','off'])->default('off');
+            $table->enum('type', ['super_admin', 'admin', 'employee', 'manager'])->default('employee');
+            $table->enum('active', ['on', 'off'])->default('off');
             $table->timestamps();
             $table->softDeletes();
         });
