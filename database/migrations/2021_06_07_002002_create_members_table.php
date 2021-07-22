@@ -20,9 +20,11 @@ class CreateMembersTable extends Migration
             $table->string('time_out')->nullable()->default('0');
             $table->string('time_in')->nullable();
             $table->float('price')->nullable()->default(0.0);
+            $table->string('hours')->default('0');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('member_type_id');
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->enum('status',['on','off'])->default('on');
             $table->timestamps();
 
@@ -30,6 +32,7 @@ class CreateMembersTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('member_type_id')->references('id')->on('member_types');
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 

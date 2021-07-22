@@ -24,9 +24,12 @@ class MemberFactory extends Factory
         return [
             'start' => $this->faker->dateTime,
             'end'   => $this->faker->dateTime,
+            'hours' => rand(10,30),
             'client_id' => \App\Models\Client::select('id')->get()->random()->id,
             'employee_id' => \App\Models\Employee::select('id')->get()->random()->id,
-            'member_type_id' => \App\Models\MemberType::select('id')->get()->random()->id
+            'member_type_id' => \App\Models\MemberType::select('id')->get()->random()->id,
+            'type_id' => \App\Models\MemberType::select('id')->get()->random()->id
+
         ];
     }
 }

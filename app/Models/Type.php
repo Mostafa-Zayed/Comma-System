@@ -16,4 +16,10 @@ class Type extends Model
     {
         return $this->hasMany('App\Models\Session','type_id','id');
     }
+
+    // RelationShip With Members
+    public function members()
+    {
+        return $this->hasMany('\App\Models\Member','type_id','id');
+    }
 }

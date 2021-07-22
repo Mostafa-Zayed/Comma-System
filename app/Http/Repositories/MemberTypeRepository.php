@@ -48,7 +48,7 @@ class MemberTypeRepository implements MemberTypeInterface
 
     public function storeMemberType($request)
     {
-        $request->validate([
+         $request->validate([
             'name' => 'required|string|min:3|max:50',
             'price' => 'required',
             'status' => 'required|string|in:on,off'
