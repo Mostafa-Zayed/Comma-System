@@ -37,7 +37,9 @@
                                     <div class="row">
                                         @include($models.'.table',['models' => $models,'rows' => $rows])
                                     </div>
-
+                                    <div class="paginating-container pagination-default">
+                                        {{$rows->links()}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
