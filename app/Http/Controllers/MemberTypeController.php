@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\MemberTypeInterface;
 
+use App\Models\MemberType;
 use Illuminate\Http\Request;
 
 class MemberTypeController extends Controller
@@ -51,46 +52,46 @@ class MemberTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  MemberType $memberType
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(MemberType $memberType)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($memberType);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  MemberType $memberType
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MemberType $memberType)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($memberType);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  MemberType $memberType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MemberType $memberType)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($request,$memberType);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  MemberType $memberType
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MemberType $memberType)
     {
-        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($id);
+        return $this->interface->{__FUNCTION__.ucfirst($this->modelName)}($memberType);
     }
 
     private function getModuleName()

@@ -53,6 +53,7 @@ class MemberTypeRepository implements MemberTypeInterface
         $request->validate([
             'name' => 'required|string|min:3|max:50',
             'price' => 'required',
+            'days' => 'required|integer',
             'status' => 'required|string|in:on,off'
         ]);
         $data = $request->except(['_token', 'create']);
@@ -61,18 +62,29 @@ class MemberTypeRepository implements MemberTypeInterface
         return redirect()->route('member-types.index')->with('success', 'Type Created Successfully');
     }
 
-    public function editMemberType($id)
+    public function editMemberType($memberType)
     {
-        // TODO: Implement editMemberType() method.
+        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+            [
+                'model' => $this->modelName,
+                'models' => $this->viewName,
+                'row' => $memberType
+            ]);
     }
 
-    public function updateMemberType($request, $id)
+    public function updateMemberType($request, $memberType)
     {
-        // TODO: Implement updateMemberType() method.
+        $request->validate([
+            'name' => 'required|string|min:3|max:50',
+            'price' => 'required',
+            'days' => 'required|integer',
+            'status' => 'required|string|in:on,off'
+        ]);
+        return ($memberType->update($request->except(['_token','_method','edit']))) ? redirect()->route('member-types.edit',['member_type' => $memberType])->with('success',$this->modelName.' '.ucfirst($memberType->name).' : Update Successfully'): abort('404');
     }
 
-    public function destroyMemberType($id)
+    public function destroyMemberType($membetType)
     {
-        // TODO: Implement destroyMemberType() method.
+        return ($membetType->delete()) ? redirect()->route('member-types.index')->with('success', $this->modelName . ' ' . ucfirst($membetType->name) . ' : Deleted Successfully') : abort('404');
     }
 }
