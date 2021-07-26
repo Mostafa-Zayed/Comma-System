@@ -29,8 +29,7 @@ class MemberRepository implements MemberInterface
             $query->select('id', 'name')->get();
         }, 'client' => function ($query) {
             $query->select('id', 'name')->get();
-        }])->select('id', 'start', 'status', 'type_id', 'client_id', 'end', 'hours')->paginate(100);
-
+        }])->select('id', 'start', 'status', 'type_id', 'client_id', 'end', 'hours','time_in','time_out')->get();
         return view(
             $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
@@ -84,7 +83,7 @@ class MemberRepository implements MemberInterface
         $data['client_id'] = $this->validClient($request->client_id);
         unset($data['start_day'], $data['start_hour'], $data['end_day'], $data['end_hour']);
         $this->model::create($data);
-        return 'ok';
+        return redirect()->route($this->viewName.'.index');
     }
 
     public function editMember($id)

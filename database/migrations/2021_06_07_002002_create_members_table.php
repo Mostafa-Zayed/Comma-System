@@ -24,7 +24,7 @@ class CreateMembersTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('member_type_id');
-            $table->unsignedBigInteger('type_id')->nullable();
+            $table->unsignedBigInteger('type_id');
             $table->enum('status', ['on', 'off'])->default('on');
             $table->timestamps();
 
