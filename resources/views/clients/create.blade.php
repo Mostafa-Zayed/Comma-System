@@ -1,8 +1,6 @@
 @extends('layout.app')
 @php $method = 'create'; @endphp
-@section('title')
-    {{ucwords($model." | ".$method) }}
-@endsection
+@section('title',ucwords($models.' | '.$model))
 @section('datatable')
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
@@ -16,7 +14,7 @@
             <div class="page-header">
                 <div class="page-title col-10">
                     <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model,'method' => $method])
+                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
                     </div>
                 </div>
                 <div class="dropdown filter custom-dropdown-icon">
@@ -43,7 +41,7 @@
                                                 <div class="widget-content widget-content-area">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-12 mx-auto">
-                                                                @include($models.'.form')
+                                                            @include($models.'.form')
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,5 +77,3 @@
         $('[data-toggle="tooltip"]').tooltip()
     </script>
 @endsection
-
-

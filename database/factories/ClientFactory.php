@@ -24,8 +24,8 @@ class ClientFactory extends Factory
     {
         return [
             'name' => $this->faker->firstName().' '.$this->faker->lastName,
-            'email' => $this->faker->safeEmail,
-            'ssn' => str_shuffle('lksdjfeirhg'.$this->faker->numberBetween(123,123232132)),
+            'email' => $this->faker->unique()->safeEmail,
+            'ssn' => $this->faker->numberBetween(123,123232132),
             'phone' => $this->faker->phoneNumber,
             'job' => $this->faker->jobTitle,
             'status' => $this->faker->randomElement(['on','off']),
