@@ -22,7 +22,7 @@ class EmployeeRepository implements EmployeeInterface
 
     public function indexEmployee()
     {
-        $rows = $this->model::select('id', 'name', 'email', 'type', 'active')->get();
+        $rows = $this->model::select('id', 'name', 'email', 'type', 'active')->paginate(10);
         return view(
             $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
