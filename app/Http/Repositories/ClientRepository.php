@@ -19,7 +19,7 @@ class ClientRepository implements ClientInterface
     }
     public function indexClient()
     {
-        $rows = $this->model::select('id','name','email','phone','status')->paginate(100);
+        $rows = $this->model::select('id','name','email','phone','status')->paginate(10);
         return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
             [
                 'model' => $this->modelName,
