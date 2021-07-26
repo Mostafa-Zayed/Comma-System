@@ -6,7 +6,7 @@
             <label for="e_mail">{{ucwords('Department')}}</label>
             <select class="form-control  basic" name="{{$input}}">
                 @foreach($types as $type)
-                    <option value="{{$type['id']}}">{{ucfirst($type['name'])}}</option>
+                <option value="{{$type['id']}}">{{ucfirst($type['name'])}}</option>
                 @endforeach
             </select>
             @error(str_replace(' ','',$input))
@@ -18,9 +18,10 @@
         <div class="col-md-6 mb-4">
             @php $input = 'member_type_id'; @endphp
             <label for="e_mail">{{ucwords('Member Type :')}}</label>
-            <select class="form-control  basic" name="{{$input}}">
+            <select class="form-control  basic" name="{{$input}}" id="member_type">
+                <option disabled selected>Select Member Type</option>
                 @foreach($memberTypes as $type)
-                    <option value="{{$type['id']}}">{{ucfirst($type['name'])}}</option>
+                <option value="{{$type['id']}}" data="{{$type['days']}}">{{ucfirst($type['name'])}}</option>
                 @endforeach
             </select>
             @error(str_replace(' ','',$input))
@@ -83,7 +84,7 @@
             <select class="form-control  basic" name="{{$input}}[]">
                 <option disabled selected>Search By Ssn</option>
                 @foreach($clients as $client)
-                    <option value="{{$client['id']}}">{{$client['name']}}</option>
+                <option value="{{$client['id']}}">{{$client['name']}}</option>
                 @endforeach
             </select>
             @error(str_replace(' ','',$input))

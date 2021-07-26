@@ -1,51 +1,51 @@
 @extends('layout.app')
 @php $method = 'create';@endphp
 @section('title')
-    {{ucwords($model." | ".$method) }}
+{{ucwords($model." | ".$method) }}
 @endsection
 @section('datatable')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/scrollspyNav.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/flatpickr/flatpickr.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/scrollspyNav.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('plugins/flatpickr/flatpickr.css')}}">
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 @endsection
 
 @section('content')
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="page-header">
-                <div class="page-title col-10">
-                    <div class="col-12">
-                        @include('includes.breadcrumb',['models' => $models,'model' => $model])
-                    </div>
-                </div>
-                <div class="dropdown filter custom-dropdown-icon">
-                    <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title col-10">
+                <div class="col-12">
+                    @include('includes.breadcrumb',['models' => $models,'model' => $model])
                 </div>
             </div>
-            <!-- Start Row -->
-            <div class="row layout-top-spacing layout-spacing">
-                <div class="col-lg-12">
-                    <div class="statbox widget box box-shadow">
-                        <div class="widget-content widget-content-area">
-                            <div class="table-responsive mb-4">
-                                <div id="column-filter_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-                                    <div class="row">
-                                        <div id="basic" class="col-lg-12 layout-spacing">
-                                            <div class="statbox widget box box-shadow">
-                                                <div class="widget-header">
-                                                    <div class="row">
-                                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                            <h4>{{ucfirst($model)}}</h4>
-                                                        </div>
+            <div class="dropdown filter custom-dropdown-icon">
+                <a class="btn btn-secondary mb-4 mr-2" href="{{route($models.'.'.$method)}}">Create {{$model}}</a>
+            </div>
+        </div>
+        <!-- Start Row -->
+        <div class="row layout-top-spacing layout-spacing">
+            <div class="col-lg-12">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="table-responsive mb-4">
+                            <div id="column-filter_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                <div class="row">
+                                    <div id="basic" class="col-lg-12 layout-spacing">
+                                        <div class="statbox widget box box-shadow">
+                                            <div class="widget-header">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                        <h4>{{ucfirst($model)}}</h4>
                                                     </div>
                                                 </div>
-                                                <div class="widget-content widget-content-area">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-12 mx-auto">
-                                                            @include($models.'.form')
-                                                        </div>
+                                            </div>
+                                            <div class="widget-content widget-content-area">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-12 mx-auto">
+                                                        @include($models.'.form')
                                                     </div>
                                                 </div>
                                             </div>
@@ -53,51 +53,69 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Row -->
-    @include('includes.footer')
+</div>
+<!-- End Row -->
+@include('includes.footer')
 
 @endsection
 @section('script')
-    <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
-    <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
-    <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
-    <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
-    <script src="{{asset('plugins/flatpickr/flatpickr.js')}}"></script>
-    <script>
+<script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
+<script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
+<script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+<script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+<script src="{{asset('plugins/flatpickr/flatpickr.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        var memberType = $("#member_type");
+        memberType.change(function() {
+            var days = $("#member_type option:selected").attr('data');
+            days = days - 1;
+            var f2 = flatpickr(document.getElementById('end_day'), {
+                altInput: true,
+                altFormat: "F j, Y",
+                enableTime: true,
+                dateFormat: "Y-m-d",
+                minDate: new Date().fp_incr(days),
+                maxDate: new Date().fp_incr(days)
+            });
+
+        });
+
         var f2 = flatpickr(document.getElementById('start_day'), {
+            altInput: true,
+            altFormat: "F j, Y",
             enableTime: true,
             dateFormat: "Y-m-d",
-            minDate: new Date()
+            minDate: "today",
+            showMonths: 1,
+            time_24hr: true
         });
+
         var f2 = flatpickr(document.getElementById('start_hour'), {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i:m",
-        });
-        var f2 = flatpickr(document.getElementById('end_day'), {
-            enableTime: true,
-            dateFormat: "Y-m-d",
-            minDate: new Date()
+            time_24hr: false,
+            defaultHour: 24
         });
         var f2 = flatpickr(document.getElementById('end_hour'), {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i:m",
         });
-    </script>
-    <script>
-        checkall('todoAll', 'todochkbox');
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
+    });
+</script>
+<script>
+    checkall('todoAll', 'todochkbox');
+    $('[data-toggle="tooltip"]').tooltip()
+</script>
 @endsection
-
-

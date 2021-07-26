@@ -21,14 +21,17 @@ class MemberTypeFactory extends Factory
      */
     public function definition()
     {
-        $types = ['Monthly','weekly','10 days','15 days'];
-        $status = ['on','off'];
+        $types = ['Monthly', 'weekly', '10 days', '15 days'];
+        $days  = [30, 7, 10, 15];
+        $status = ['on', 'off'];
         static $counter = 0;
         return [
             'name' => $types[$counter++],
+            'days' => $days[$counter - 1],
             'status' => $status[array_rand($status)],
-            'price' => rand(0,1000),
+            'price' => rand(0, 1000),
             'employee_id' => \App\Models\Employee::select('id')->get()->random()->id
+
         ];
     }
 }
