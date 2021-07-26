@@ -9,7 +9,7 @@
                 <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg></a>
         <div class="nav-logo align-self-center">
-            <a class="navbar-brand" href="{{route('index')}}"><img alt="logo" src="{{asset('assets/img/90x90.jpg')}}"> <span class="navbar-brand-name">COMMA</span></a>
+            <a class="navbar-brand" href="{{route('index')}}"><img alt="logo" src="{{asset('assets/img/comma_logo.png')}}"> <span class="navbar-brand-name">COMMA</span></a>
         </div>
         <ul class="navbar-item flex-row mr-auto">
             <li class="nav-item align-self-center search-animated">
