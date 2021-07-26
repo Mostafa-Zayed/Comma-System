@@ -16,8 +16,9 @@ class CreateMemberTypesTable extends Migration
         Schema::create('member_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->smallInteger('days');
             $table->string('price')->nullable()->default('0');
-            $table->enum('status',['on','off'])->default('on');
+            $table->enum('status', ['on', 'off'])->default('on');
             $table->unsignedBigInteger('employee_id');
             $table->timestamps();
 

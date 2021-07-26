@@ -21,13 +21,15 @@ class MemberTypeRepository implements MemberTypeInterface
 
     public function indexMemberType()
     {
-        $rows = $this->model::select('id','name','status')->paginate(100);
-        return view($this->viewName.'.'.substr(__FUNCTION__,0,strpos(__FUNCTION__,$this->modelName)),
+        $rows = $this->model::select('id', 'name', 'status', 'price', 'days')->paginate(100);
+        return view(
+            $this->viewName . '.' . substr(__FUNCTION__, 0, strpos(__FUNCTION__, $this->modelName)),
             [
                 'model' => $this->modelName,
                 'models' => $this->viewName,
                 'rows' => $rows
-            ]);
+            ]
+        );
     }
 
     public function showMemberType($id)
@@ -48,15 +50,15 @@ class MemberTypeRepository implements MemberTypeInterface
 
     public function storeMemberType($request)
     {
-         $request->validate([
+        $request->validate([
             'name' => 'required|string|min:3|max:50',
             'price' => 'required',
             'status' => 'required|string|in:on,off'
         ]);
-        $data = $request->except(['_token','create']);
+        $data = $request->except(['_token', 'create']);
         $data['employee_id'] = Auth::user()->id;
         $this->model::create($data);
-        return redirect()->route('member-types.index')->with('success','Type Created Successfully');
+        return redirect()->route('member-types.index')->with('success', 'Type Created Successfully');
     }
 
     public function editMemberType($id)
